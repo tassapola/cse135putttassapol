@@ -2,14 +2,6 @@
 
 <html>
 	<head>
-	<%
-		String firstName =  request.getParameter("first_name");
-		String lastName =  request.getParameter("last_name");
-		String middleName =  request.getParameter("middle_name");
-		session.setAttribute("first_name", firstName);
-		session.setAttribute("last_name", lastName);
-		session.setAttribute("middle_name", middleName);
-	%>
 	</head>
 	<body>
 		<div class="info-container">
@@ -33,7 +25,7 @@
 					String country = (String) e.nextElement();
 					if (counter % 3 == 0) out.println("<tr>");
 			%>
-					<td><a href="residence.jsp?citizenship=<%= country %>"> <%= country %> </a></td> 
+					<td><a href="collect_session.jsp?next=residence.jsp&citizenship=<%= country %>"> <%= country %> </a></td> 
 			<%  
 					if (counter % 3 == 2) out.println("</tr>");
 					counter ++;
