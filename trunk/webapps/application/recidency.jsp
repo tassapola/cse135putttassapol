@@ -27,8 +27,8 @@
 			<form action="collect_session.jsp" method="GET">
 				<div class="field-container"> 
 					<span class="label">Residency:</span> <br/>
-					<input type="radio" name="recidency" value="true" checked="yes" /> US Permanent Resedent <br/>
-					<input type="radio" name="recidency" value="false"/> Non-Resedent <br/>
+					<input type="radio" name="residency" value="US Permanent Resident" checked="yes" /> US Permanent Resident <br/>
+					<input type="radio" name="residency" value="Non-Resident"/> Non-Resident <br/>
 				</div>
 				<input type="hidden" name="next" value="provide_degree_location.jsp"/>
 				<div class="field-container"> 
