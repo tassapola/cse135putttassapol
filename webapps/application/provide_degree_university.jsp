@@ -5,7 +5,7 @@
 	</head>
 	<body>
 	<%
-		String location =  request.getParameter("location");
+		String location = (String)session.getAttribute("location");
 	%>
 		<div class="country-list-container">
 			<%
@@ -40,7 +40,7 @@
 						university = (String) e.nextElement();
 						if (counter % 3 == 0) out.println("<tr>");
 			%>
-						<td><a href="provide_degree_discipline.jsp?university=<%= university %>"> <%= university %> </a></td> 
+						<td><a href="collect_session.jsp?next=provide_degree_discipline.jsp&university=<%= university %>"> <%= university %> </a></td> 
 			<%  
 						if (counter % 3 == 2) out.println("</tr>");
 						counter ++;
@@ -52,8 +52,9 @@
 			
 			<p>
 			Input your university name if you cannot find it in the list<br>
-			<form method="get" action="provide_degree_discipline.jsp">
+			<form method="get" action="collect_session.jsp">
 				<input type="text" name="university" value="">
+				<input type="hidden" name="next" value="provide_degree_discipline.jsp">
 				<input type="submit" name="submit" value="Submit">
 				<input type="reset">
 			</form>

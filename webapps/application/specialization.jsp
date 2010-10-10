@@ -2,9 +2,17 @@
 
 <html>
 	<head>
-	<% session.invalidate(); %>
 	</head>
 	<body>
+		<%
+		for (Enumeration attr = session.getAttributeNames(); attr.hasMoreElements();)
+		{
+			String attrName = (String)attr.nextElement();
+		%>
+			<%= attrName %>: <%= session.getAttribute(attrName)%> <br/>
+		<%
+		}
+		%>
       	<%
       		support s = new support();   	
       		String specializationsPath = config.getServletContext().getRealPath("/support/specializations.txt");

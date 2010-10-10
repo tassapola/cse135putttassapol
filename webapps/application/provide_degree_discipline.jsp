@@ -6,7 +6,7 @@
 	<head>
 	</head>
 	<body>
-		<form>
+		<form method="GET" action="collect_session.jsp">
 		<div class="discipline-list-container">
 			<%
 				support s = new support();   	
@@ -19,13 +19,26 @@
 				{
 					String discipline = (String) e.nextElement();
 			%>
-					<input type="radio" name="recidency" value="<%= discipline %>" <%= (isFirst)?"checked=\"yes\"":"" %> /><%= discipline %><br/>
+					<input type="radio" name="discipline" value="<%= discipline %>" <%= (isFirst)?"checked=\"yes\"":"" %> /><%= discipline %><br/>
 			<%  
 					isFirst = false;
 				} 
 			%>
+			<input type="radio" name="discipline" value="other" />Other <input type="text" name="other_discipline"/><br/>
 		</div>
-		<input type="submit" name="submit" value="submit"/>
+		
+		Degree awarded date or expected date: <input type="text" name="degree_month" size="2" maxlength="2"/> / 
+											  <input type="text" name="degree_year" size="2" maxlength="4"/> <br/>
+		GPA: <input type="text" name="degree_gpa" size="4"/> <br/>
+		Title of Degree: <select name="degree_title">
+							<option value="phd" selected="yes">PhD</option>
+							<option value="ms">MS</option>
+							<option value="bs">BS</option>
+						 </select> <br/>
+		Transcript: <input type="file" name="transcript_file" />
+		<br/>
+		<input type="hidden" name="next" value="more_degree.jsp"/>
+		<input type="submit" name="submit" value="Submit"/>
 		</form>
 	</body>
 </html>

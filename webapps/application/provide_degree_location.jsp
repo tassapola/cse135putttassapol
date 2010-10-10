@@ -28,7 +28,7 @@
 					state = (String) e2.nextElement();
 					if (counter % 3 == 0) out.println("<tr>");
 					%>
-					<td><a href="provide_degree_university.jsp?location=<%= state %>"> <%= state %> </a></td>
+					<td><a href="collect_session.jsp?next=provide_degree_university.jsp&location=<%= state %>"> <%= state %> </a></td>
 					<%
 					if (counter % 3 == 2) out.println("</tr>");
 					counter++;
@@ -46,7 +46,7 @@
 					if (!country.equals("United States")) {
 						if (counter % 3 == 0) out.println("<tr>");
 			%>
-						<td><a href=provide_degree_university.jsp?location=<%= country %>"> <%= country %> </a></td> 
+						<td><a href="collect_session.jsp?next=provide_degree_university.jsp&location=<%= country %>"> <%= country %> </a></td> 
 			<%  
 						if (counter % 3 == 2) out.println("</tr>");
 						counter ++;
