@@ -43,7 +43,7 @@
 				<div class="field-container"> 
 					<span class="label">Telephone number:</span><input type="text" name="telephone"/>
 				</div>
-				<input type="hidden" name="next" value="<%= (session.getAttribute("residence").equals("United States"))?"degree_location.jsp":"recidency.jsp" %>"/>
+				<input type="hidden" name="next" value="<%= (session.getAttribute("residence").equals("United States"))?"provide_degree_location.jsp":"recidency.jsp" %>"/>
 				<div class="field-container"> 
 					<input type="submit" name="submit" value="submit"/> 
 				</div>

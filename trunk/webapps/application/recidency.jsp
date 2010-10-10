@@ -30,7 +30,7 @@
 					<input type="radio" name="recidency" value="true" checked="yes" /> US Permanent Resedent <br/>
 					<input type="radio" name="recidency" value="false"/> Non-Resedent <br/>
 				</div>
-				<input type="hidden" name="next" value="degree_location.jsp"/>
+				<input type="hidden" name="next" value="provide_degree_location.jsp"/>
 				<div class="field-container"> 
 					<input type="submit" name="submit" value="submit"/> 
 				</div>
