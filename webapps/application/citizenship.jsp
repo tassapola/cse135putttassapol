@@ -11,6 +11,7 @@
 		</div>
 		<br/>
 		<div class="country-list-container">
+			Please select your country of citizenship:
 			<%
 				support s = new support();   	
 				String countryPath = config.getServletContext().getRealPath("/support/countries.txt");
@@ -30,6 +31,7 @@
 					if (counter % 3 == 2) out.println("</tr>");
 					counter ++;
 				} 
+				if (counter % 3 != 0) out.println("</tr>");
 			%>
 			</table>
 		</div>
