@@ -18,4 +18,6 @@
 	<head>
 	<meta http-equiv="REFRESH" content="0;url=<%= nextPage %>"/>
 	</head>
+	<body>
+	</body>
 </html>
