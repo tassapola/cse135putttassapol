@@ -1,11 +1,12 @@
-create table countries (
+﻿create table countries (
 	ID	serial primary key,
 	name	text
 );
 
 create table universities (
 	ID	serial primary key,
-	name	text
+	location text,
+	name	 text
 );
 
 create table disciplines (
@@ -42,7 +43,6 @@ create table applicant (
 
 create table degree (
 	ID	serial primary key,
-	location	text,
 	university	integer references universities (ID) NOT NULL,
 	discipline	integer references disciplines (ID) NOT NULL,
 	degree_title	text,
