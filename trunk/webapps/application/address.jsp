@@ -25,6 +25,16 @@
 			</div>
 		</div>
 		<div class="node">
+			<div class="title">Applicant name</div>
+			<div class="info">
+				<span class="topic">First name: </span><%= session.getAttribute("first_name")%> <br/>
+				<span class="topic">Last name: </span><%= session.getAttribute("last_name")%> <br/>
+				<span class="topic">Middle name: </span><%= session.getAttribute("middle_name")%> <br/>
+			</div>
+			<div class="title">Country of Citizenship</div>
+			<div class="info">
+				<span class="topic">Country of Citizenship</span> <%= session.getAttribute("citizenship")%> 
+			</div>
 			<div class="title">Country of Residence</div>
 			<div class="info">
 				<span class="topic">Country of Residence</span> <%= session.getAttribute("residence")%> 

@@ -23,13 +23,25 @@
 			</div>
 		</div>
 		<div class="node">
+			<div class="title">Degree</div>
+			<div class="info">
+				<span class="topic">Location: </span><%= session.getAttribute("location") %> <br/>
+				<span class="topic">University: </span><%=session.getAttribute("university")%> <br/>
+				<span class="topic">Discipline: </span><%= session.getAttribute("discipline") %> <%= (session.getAttribute("discipline").equals("other"))? "-" + session.getAttribute("other_discipline"):"" %> <br/>
+				<span class="topic">Degree Title: </span><%= session.getAttribute("degree_title") %> <br/>
+				<span class="topic">Degree Date: </span><%= session.getAttribute("degree_month") %> / <%= session.getAttribute("degree_year") %> <br/>
+				<span class="topic">GPA: </span><%= session.getAttribute("degree_gpa") %> <br/>
+				<span class="topic">Transcript: </span><%= session.getAttribute("transcript_file") %> <br/>
+			</div>
+		</div>
+		<div class="node">
 			<div class="title">Submit more degree information?</div>
 			<form action="merge_degree_info.jsp" method="GET">
 				<div class="field-container"> 
 					<input type="submit" name="submit" value="Submit Next Degree"/> 
 					<input type="submit" name="submit" value="Done"/> 
 				</div>
-			</form>
+			</form>	
 		</div>
 	</body>
 </html>

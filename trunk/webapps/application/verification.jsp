@@ -57,7 +57,7 @@
 				<span class="topic">Area code: </span><%= session.getAttribute("areacode") %> <br/>
 				<span class="topic">Telephone number: </span><%= session.getAttribute("telephone") %> <br/>
 				<% 
-					if(session.getAttribute("citizenship").equals("United States"))
+					if(!session.getAttribute("citizenship").equals("United States"))
 					{
 				%>
 				<span class="topic">Residency: </span><%= session.getAttribute("residency") %> <br/>	

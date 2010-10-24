@@ -23,6 +23,73 @@
 			</div>
 		</div>
 		<div class="node">
+			<div class="title">Applicant name</div>
+			<div class="info">
+				<span class="topic">First name: </span><%= session.getAttribute("first_name")%> <br/>
+				<span class="topic">Last name: </span><%= session.getAttribute("last_name")%> <br/>
+				<span class="topic">Middle name: </span><%= session.getAttribute("middle_name")%> <br/>
+			</div>
+			<div class="title">Citizenship</div>
+			<div class="info">
+				<span class="topic">Country of Citizenship: </span><%= session.getAttribute("citizenship")%> <br/>
+				<span class="topic">Country of Residence: </span><%= session.getAttribute("residence")%> <br/>
+			</div>
+			<div class="title">Address</div>
+			<div class="info">
+				<span class="topic">Street Address: </span><%= session.getAttribute("street") %> <br/>
+				<span class="topic">City: </span><%= session.getAttribute("city") %> <br/>
+				<% 
+				if (session.getAttribute("residence").equals("United States"))
+				{
+				%>
+				<span class="topic">State: </span><%= session.getAttribute("state") %> <br/>
+				<% } %>
+				
+				<span class="topic">Zip code: </span><%= session.getAttribute("zipcode") %> <br/>
+				<% 
+				if (!session.getAttribute("residence").equals("United States")) 
+				{
+				%>
+				<span class="topic">Country code: </span><%= session.getAttribute("countrycode") %> <br/>
+				<% } %>
+				<span class="topic">Area code: </span><%= session.getAttribute("areacode") %> <br/>
+				<span class="topic">Telephone number: </span><%= session.getAttribute("telephone") %> <br/>
+				<% 
+					if(session.getAttribute("citizenship").equals("United States"))
+					{
+				%>
+				<span class="topic">Residency: </span><%= session.getAttribute("residency") %> <br/>	
+				<%  } %>
+			</div>
+			<%
+					Vector degreeVector = (Vector)session.getAttribute("degree_vector");
+					if (degreeVector != null)
+					{
+			%>
+			<div class="title">Degree</div>
+			<div class="info">
+				<%
+					
+						for (Enumeration e = degreeVector.elements(); e.hasMoreElements();)
+						{
+							HashMap degree = (HashMap) e.nextElement();
+				%>
+							<span class="topic">Location: </span><%= degree.get("location") %> <br/>
+							<span class="topic">University: </span><%= degree.get("university") %> <br/>
+							<span class="topic">Discipline: </span><%= degree.get("discipline") %> <%= (degree.get("discipline").equals("other"))? "-" + degree.get("other_discipline"):"" %> <br/>
+							<span class="topic">Degree Title: </span><%= degree.get("degree_title") %> <br/>
+							<span class="topic">Degree Date: </span><%= degree.get("degree_month") %> / <%= degree.get("degree_year") %> <br/>
+							<span class="topic">GPA: </span><%= degree.get("degree_gpa") %> <br/>
+							<span class="topic">Transcript: </span><%= degree.get("transcript_file") %> <br/>
+				<%
+				
+							if(e.hasMoreElements()) out.println("<hr/>");
+						}
+				%>
+			</div>
+			<% 	}%>
+		</div>
+		<div class="node">
 			<div class="title">Choose University Location</div>
 
 			<%
