@@ -90,7 +90,7 @@
 				<span class="topic">Specialization: </span><%= session.getAttribute("specialization") %> <br/>
 			</div>
 			<div class="field-container">
-				<form action="" method="GET">
+				<form action="submit_application.jsp" method="GET">
 					<input type="submit" name="submit" value="Submit Application"/> 
 					<input type="submit" name="submit" value="Cancel"/> 
 				</form>

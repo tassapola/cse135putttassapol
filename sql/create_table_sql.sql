@@ -1,54 +1,55 @@
 ﻿create table countries (
 	ID	serial primary key,
-	name	text
+	name	varchar(255)
 );
 
 create table universities (
 	ID	serial primary key,
-	location text,
-	name	 text
+	location varchar(255),
+	name	 varchar(255)
 );
 
 create table disciplines (
 	ID	serial primary key,
-	name	text
+	name	varchar(255)
 );
 
 create table specializations (
 	ID	serial primary key,
-	name	text
+	name	varchar(255)
 );
 
 create table address (
 	ID	serial primary key,
-	street_address	text,
-	city	text,
-	zip_code	text,
-	area_code	text,
-	tel_number	text,
-	state		text,
-	country_code	text
+	street_address	varchar(255),
+	city	varchar(255),
+	zip_code	varchar(5),
+	area_code	varchar(10),
+	tel_number	varchar(20),
+	state		varchar(255),
+	country_code	varchar(20)
 );
 
 create table applicant (
 	ID	serial primary key,
-	first_name	text,
-	last_name	text,
-	middle_name	text,
+	first_name	varchar(255),
+	last_name	varchar(255),
+	middle_name	varchar(255),
 	citizenship	integer references countries (ID) NOT NULL,
-	residency	integer references countries (ID) NOT NULL,
+	residence	integer references countries (ID) NOT NULL,
 	specialization	integer references specializations (ID) NOT NULL,
-	address		integer references address (ID) NOT NULL
+	address		integer references address (ID) NOT NULL,
+	residency	boolean
 );
 
 create table degree (
 	ID	serial primary key,
 	university	integer references universities (ID) NOT NULL,
 	discipline	integer references disciplines (ID) NOT NULL,
-	degree_title	text,
+	degree_title	varchar(255),
 	degree_date	date,
 	gpa		real,
-	transcript	text
+	transcript	varchar(255)
 );
 
 create table degree_holder (
