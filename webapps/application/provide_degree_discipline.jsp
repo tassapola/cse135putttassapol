@@ -24,6 +24,13 @@
 				Graduate Admission System
 			</div>
 		</div>
+		<div class="node">
+			<div class="title">Degree</div>
+			<div class="info">
+				<span class="topic">Location: </span><%= session.getAttribute("location") %> <br/>
+				<span class="topic">University: </span><%=session.getAttribute("university")%> <br/>
+			</div>
+		</div>
 		<form method="GET" action="collect_session.jsp">
 		<div class="node">
 			<div class="title">Enter degree information</div>

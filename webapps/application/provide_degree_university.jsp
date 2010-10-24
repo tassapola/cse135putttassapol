@@ -26,6 +26,12 @@
 			String location = (String)session.getAttribute("location");
 		%>
 		<div class="node">
+			<div class="title">Degree</div>
+			<div class="info">
+				<span class="topic">Location: </span><%= location %> <br/>
+			</div>
+		</div>
+		<div class="node">
 			<div class="title">Select University in <%= location %></div>
 			<%
 				support s = new support();   	
