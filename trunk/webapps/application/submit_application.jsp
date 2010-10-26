@@ -162,15 +162,23 @@
 			stmt.setString(2, location);
 			resultSet = stmt.executeQuery();
 			int university_id = 0;
-			if(resultSet.next())
+			if(!resultSet.next())
 			{
-				//University exists in database
-				university_id = resultSet.getInt("id");
+				resultSet.close();
+				
+				insert_stmt = conn.prepareStatement("INSERT INTO universities (name, location) VALUES (?, ?);");
+				insert_stmt.setString(1, university);
+				insert_stmt.setString(2, location);
+				
+				insert_stmt.execute();
+				
+				resultSet = stmt.executeQuery();
+				
+				if(!resultSet.next())
+					throw new Exception();
 			}
-			else
-			{
-				throw new Exception();
-			}
+			
+			university_id = resultSet.getInt("id");
 			resultSet.close();
 			//End getting university ID
 			
@@ -277,8 +285,6 @@
 				insert_stmt.setInt(2, degree_id);
 				insert_stmt.execute();
 			} 
-			
-			
 			
 			//DEBUG
 			out.println("<b>== insert one degree successful ==</b><br>");
