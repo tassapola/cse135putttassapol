@@ -29,7 +29,9 @@
 		String reqDisc = request.getParameter("discipline");
 		
 		String query;
-		query = "select " +
+		query = "select first_name, last_name, middle_name from " +
+				"(" +
+				"select " +
 				"a.first_name as first_name, a.last_name as last_name, a.middle_name as middle_name, " + 
 				"s.name as specialization, u.name as university, de.degree_title as degree_title, di.name as discipline " +
 				"from applicant a, specializations s, degree de, degree_holder de_h, disciplines di, universities u " +
@@ -42,7 +44,9 @@
 			query += "and s.name = '" + reqSpec + "' ";
 		if (reqDisc != null)
 			query += "and di.name = '" + reqDisc + "' ";
-		query += "order by a.last_name, a.first_name, a.middle_name, de.degree_title desc";
+		//query += "order by a.last_name, a.first_name, a.middle_name, de.degree_title desc";
+		query += ") as Z group by first_name, last_name, middle_name ";
+		query += "order by last_name, first_name, middle_name";
 		ResultSet resultSet;
 		Statement stmt = conn.createStatement();
 		resultSet = stmt.executeQuery(query);
@@ -54,20 +58,12 @@
 			String first_name = resultSet.getString("first_name");
 			String last_name = resultSet.getString("last_name");
 			String middle_name = resultSet.getString("middle_name");
-			String specialization = resultSet.getString("specialization");
-			String university = resultSet.getString("university");
-			String degree_title = resultSet.getString("degree_title");
-			String discipline = resultSet.getString("discipline");
 			if (firstRow) {
 				out.print("<tr>");
 				out.print("<th>No.</th>");
 				out.print("<th>First name</th>");
 				out.print("<th>Last name</th>");
 				out.print("<th>Middle name</th>");
-				out.print("<th>Specialization</th>");
-				out.print("<th>University</th>");
-				out.print("<th>Degree title</th>");
-				out.print("<th>Discipline</th>");
 				out.print("</tr>");
 			}
 			out.print("<tr>");
@@ -75,10 +71,6 @@
 			out.print("<td>" + first_name + "</td>");
 			out.print("<td>" + last_name + "</td>");
 			out.print("<td>" + middle_name + "</td>");
-			out.print("<td>" + specialization + "</td>");
-			out.print("<td>" + university + "</td>");
-			out.print("<td>" + degree_title + "</td>");
-			out.print("<td>" + discipline + "</td>");
 			out.print("</tr>");
 			firstRow = false;
 			rowNo++;
