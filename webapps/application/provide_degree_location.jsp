@@ -100,7 +100,9 @@
 				Statement stmt = con.createStatement();
 				
 				//Get all states
-				ResultSet states = stmt.executeQuery("SELECT DISTINCT location FROM universities WHERE location NOT IN (SELECT name FROM countries) ORDER BY location asc;");
+				//ResultSet states = stmt.executeQuery("SELECT DISTINCT location FROM universities WHERE location NOT IN (SELECT name FROM countries) ORDER BY location asc;");
+				
+				ResultSet states = stmt.executeQuery("SELECT DISTINCT location FROM universities WHERE universities.id < 1837 ORDER BY location asc;");
 				
 				int counter = 0;
 			%>
