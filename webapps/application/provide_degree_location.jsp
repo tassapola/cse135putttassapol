@@ -1,4 +1,4 @@
-<%@page import="support.*, java.util.*" %>
+<%@ page language="java" import="java.sql.*,support.*, java.util.*" %>
 
 <html>
 	<head>
@@ -93,12 +93,15 @@
 			<div class="title">Choose University Location</div>
 
 			<%
-				support s = new support();   	
-				String countryPath = config.getServletContext().getRealPath("/support/countries.txt");
-				String universitiesPath = config.getServletContext().getRealPath("/support/universities.txt");
+				Class.forName("org.postgresql.Driver");
+				Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/cse135?user=postgres&password=password");
+				con.setAutoCommit(false);
 				
-				Vector countryVector =  s.getCountries(countryPath);
-				Vector universitiesVector =  s.getUniversities(universitiesPath);
+				Statement stmt = con.createStatement();
+				
+				//Get all states
+				ResultSet states = stmt.executeQuery("SELECT DISTINCT location FROM universities WHERE location NOT IN (SELECT name FROM countries) ORDER BY location asc;");
+				
 				int counter = 0;
 			%>
 				<div class="node">
@@ -106,13 +109,12 @@
 					<table>
 					<%
 						String state = "";
-						Enumeration e = universitiesVector.elements();
 						counter = 0;
-						while (!state.equals("Wyoming"))
+						while (states.next())
 						{
-							Vector u = (Vector) e.nextElement();
-							Enumeration e2 = u.elements();
-							state = (String) e2.nextElement();
+							//Vector u = (Vector) e.nextElement();
+							//Enumeration e2 = u.elements();
+							state = states.getString("location");//(String) e2.nextElement();
 							if (counter % 3 == 0) out.println("<tr>");
 							%>
 							<td><a href="collect_session.jsp?next=provide_degree_university.jsp&location=<%= state %>"> <%= state %> </a></td>
@@ -121,6 +123,7 @@
 							counter++;
 						}
 						if (counter % 3 != 0) out.println("</tr>");
+						states.close();
 					%>
 					</table>
 				</div>
@@ -128,9 +131,11 @@
 					<div class="title">Other Countries</div>
 					<table>
 					<%
-						for (e = countryVector.elements(); e.hasMoreElements();)
+						ResultSet countries = stmt.executeQuery("SELECT  * FROM countries ORDER BY name asc;");
+						counter = 0;
+						while(countries.next())
 						{
-							String country = (String) e.nextElement();
+							String country = countries.getString("name");
 							if (!country.equals("United States")) {
 								if (counter % 3 == 0) out.println("<tr>");
 					%>
@@ -141,7 +146,7 @@
 							}
 						} 
 						if (counter % 3 != 0) out.println("</tr>");
-						
+						countries.close();
 					%>
 					</table>
 				</div>

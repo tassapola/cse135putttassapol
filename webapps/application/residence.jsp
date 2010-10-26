@@ -1,4 +1,4 @@
-<%@page import="support.*, java.util.*" %>
+<%@ page language="java" import="java.sql.*,support.*, java.util.*" %>
 
 <% String nextPage = "collect_session.jsp?next=address.jsp&"; %>
 
@@ -39,21 +39,24 @@
 		<div class="node">
 			<div class="title">Please select your country of recidence:</div>
 			<%
-				support s = new support();   	
-				String countryPath = config.getServletContext().getRealPath("/support/countries.txt");
+				Class.forName("org.postgresql.Driver");
+				Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/cse135?user=postgres&password=password");
+				con.setAutoCommit(false);
 				
-				Vector countryVector =  s.getCountries(countryPath);
+				Statement stmt = con.createStatement();
+				
+				ResultSet countries = stmt.executeQuery("SELECT * FROM countries ORDER BY id asc;");
 				int counter = 0;
 			%>
 			<table>
 			<tr><td><a href="<%= nextPage %>residence=<%= session.getAttribute("citizenship") %>">Same with country of citizenship</a></td></tr>
 			<%
-				for (Enumeration e = countryVector.elements(); e.hasMoreElements();)
+				while(countries.next())
 				{
-					String country = (String) e.nextElement();
+					String country = countries.getString("name"); //(String) e.nextElement();
 					if (counter % 3 == 0) out.println("<tr>");
 			%>
-					<td><a href="<%= nextPage %>residence=<%= country %>"> <%= country %> </a></td> 
+					<td><a href="collect_session.jsp?next=address.jsp&residence=<%= country %>"> <%= country %> </a></td> 
 			<%  
 					if (counter % 3 == 2) out.println("</tr>");
 					counter ++;

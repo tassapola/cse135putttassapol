@@ -1,4 +1,4 @@
-<%@page import="support.*, java.util.*" %>
+<%@ page language="java" import="java.sql.*,support.*, java.util.*" %>
 
 <html>
 	<head>
@@ -34,44 +34,34 @@
 		<div class="node">
 			<div class="title">Select University in <%= location %></div>
 			<%
-				support s = new support();   	
-				String universitiesPath = config.getServletContext().getRealPath("/support/universities.txt");
+				Class.forName("org.postgresql.Driver");
+				Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/cse135?user=postgres&password=password");
+				con.setAutoCommit(false);
 				
-				Vector universitiesVector =  s.getUniversities(universitiesPath);
+				PreparedStatement stmt = con.prepareStatement("SELECT name FROM universities WHERE universities.location = ?  ORDER BY name asc;");
+				stmt.setString(1, location);
+				
+				//Get all states
+				ResultSet universities = stmt.executeQuery();
+				
 				int counter = 0;
-			%>
-			
-			<%
-				Vector universitiesToShowVector = null;
-				for (Enumeration e = universitiesVector.elements(); e.hasMoreElements();)
-				{
-					Vector u = (Vector) e.nextElement();
-					Enumeration e2 = u.elements();
-					String stateOrCountry = (String) e2.nextElement();
-					if (stateOrCountry.equals(location)) {
-						universitiesToShowVector = (Vector) e2.nextElement();
-						break;
-					}
-				}
 			%>
 			
 			<table>
 			<%
 				String university = "";
 				counter = 0;
-				if (universitiesToShowVector != null) {
-					for (Enumeration e = universitiesToShowVector.elements(); e.hasMoreElements(); )
-					{
-						university = (String) e.nextElement();
-						if (counter % 3 == 0) out.println("<tr>");
+				while(universities.next())
+				{
+					university = universities.getString("name");
+					if (counter % 3 == 0) out.println("<tr>");
 			%>
-						<td><a href="collect_session.jsp?next=provide_degree_discipline.jsp&university=<%= university %>"> <%= university %> </a></td> 
+					<td><a href="collect_session.jsp?next=provide_degree_discipline.jsp&university=<%= university %>"> <%= university %> </a></td> 
 			<%  
-						if (counter % 3 == 2) out.println("</tr>");
-						counter ++;
-					} 
-					if (counter % 3 != 0) out.println("</tr>");
-				}
+					if (counter % 3 == 2) out.println("</tr>");
+					counter ++;
+				} 
+				if (counter % 3 != 0) out.println("</tr>");
 			%>			
 			</table>
 			<form method="get" action="collect_session.jsp">
