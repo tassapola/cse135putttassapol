@@ -53,7 +53,7 @@
 							Statement stmt = con.createStatement();
 								
 							//Get all states
-							ResultSet disciplines = stmt.executeQuery("SELECT name FROM specializations WHERE id <= 4 ORDER BY name asc;");
+							ResultSet disciplines = stmt.executeQuery("SELECT name FROM disciplines WHERE id <= 4 ORDER BY name asc;");
 							int counter = 0;
 
 							boolean isFirst = true;
