@@ -6,7 +6,7 @@ drop table if exists specializations;
 drop table if exists disciplines;
 drop table if exists universities;
 drop table if exists countries;
-
+drop table if exists transcript;
 
 
 
