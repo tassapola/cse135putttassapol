@@ -1,4 +1,11 @@
-<%@page import="support.*, java.util.*" %>
+<%@page import="
+    org.apache.commons.fileupload.*, 
+    org.apache.commons.fileupload.disk.*,
+	org.apache.commons.fileupload.servlet.*, 
+	java.util.*,
+	java.io.*,
+	java.sql.*
+" %>
 
 <% String nextPage = "collect_session.jsp?next=address.jsp&"; %>
 
@@ -31,7 +38,7 @@
 				<span class="topic">University: </span><%=session.getAttribute("university")%> <br/>
 			</div>
 		</div>
-		<form method="GET" action="collect_session.jsp">
+		<form method="POST" action="collect_session.jsp" enctype="multipart/form-data">
 		<div class="node">
 			<div class="title">Enter degree information</div>
 			<table>
@@ -39,15 +46,21 @@
 					<td class="label">Discipline: </td>
 					<td class="field">
 						<%
-							support s = new support();   	
-							String disciplinePath = config.getServletContext().getRealPath("/support/majors.txt");
-							
-							Vector disciplineVector = s.getMajors(disciplinePath);
+							Class.forName("org.postgresql.Driver");
+							Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/cse135?user=postgres&password=password");
+							con.setAutoCommit(false);
+								
+							Statement stmt = con.createStatement();
+								
+							//Get all states
+							ResultSet disciplines = stmt.executeQuery("SELECT name FROM specializations WHERE id <= 4 ORDER BY name asc;");
+							int counter = 0;
+
 							boolean isFirst = true;
 
-							for (Enumeration e = disciplineVector.elements(); e.hasMoreElements();)
+							while (disciplines.next())
 							{
-								String discipline = (String) e.nextElement();
+								String discipline = disciplines.getString("name");
 						%>
 								<input type="radio" name="discipline" value="<%= discipline %>" <%= (isFirst)?"checked=\"yes\"":"" %> /><%= discipline %><br/>
 						<%  
