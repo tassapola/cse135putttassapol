@@ -28,7 +28,7 @@
 		
 		String query;
 		query = "select di.name as name, " + 
-				"count(distinct (a.first_name, a.last_name, a.middle_name)) as count " + 
+				"count(distinct a.id) as count " + 
 				"from applicant a, degree_holder de_h, degree de, disciplines di " +
 				"where "  +
 				"de_h.applicant = a.id " + 

@@ -1,4 +1,12 @@
-<%@ page language="java" import="java.sql.*,support.*, java.util.*" %>
+<page language="java" import="java.sql.*,support.*, java.util.*" %>
+<%@page import="
+    org.apache.commons.fileupload.*, 
+    org.apache.commons.fileupload.disk.*,
+	org.apache.commons.fileupload.servlet.*, 
+	java.util.*,
+	java.io.*,
+	java.sql.*
+" %>
 
 <%
 	String submit = request.getParameter("submit");
@@ -155,8 +163,26 @@
 			String degree_month = (String) degree.get("degree_month");
 			String degree_year = (String) degree.get("degree_year");
 			String degree_gpa = (String) degree.get("degree_gpa");
-			String transcript_file = (String) degree.get("transcript_file");
-
+			DiskFileItem transcript_file = (DiskFileItem) degree.get("transcript_file");
+			
+			String fileName = transcript_file.getName();
+			InputStream stream = transcript_file.getInputStream();
+			insert_stmt = conn.prepareStatement("INSERT INTO transcript (name, content) values (?, ?);");
+			insert_stmt.setString(1, fileName);
+			insert_stmt.setBinaryStream(2, stream, (int) transcript_file.getSize());
+			insert_stmt.execute();
+			int transcript_id;
+			stmt = conn.prepareStatement("SELECT id FROM transcript WHERE name = ?;");
+			stmt.setString(1, fileName);
+			resultSet = stmt.executeQuery();
+			if(resultSet.next())
+			{
+				//Transcript exists in database
+				transcript_id = resultSet.getInt("id");
+			}
+			else
+				throw new Exception("transcript must be stored in the database and has ID");
+			
 			stmt = conn.prepareStatement("SELECT id FROM universities WHERE name = ? AND location = ?;");
 			stmt.setString(1, university);
 			stmt.setString(2, location);
@@ -226,7 +252,7 @@
 			cal.set(year, month, 01);
 			stmt.setDate(4, new java.sql.Date(cal.getTimeInMillis()));
 			stmt.setFloat(5, Float.parseFloat(degree_gpa));
-			stmt.setString(6, transcript_file);
+			stmt.setInt(6, transcript_id);
 			resultSet = stmt.executeQuery();
 			
 			if (!resultSet.next())
@@ -237,7 +263,7 @@
 				insert_stmt.setString(3, degree_title);
 				insert_stmt.setDate(4, new java.sql.Date(cal.getTimeInMillis()));
 				insert_stmt.setFloat(5, Float.parseFloat(degree_gpa));
-				insert_stmt.setString(6,  transcript_file);
+				insert_stmt.setInt(6,  transcript_id);
 				insert_stmt.execute();
 			}
 			
@@ -263,7 +289,7 @@
 			stmt.setString(3, degree_title);
 			stmt.setDate(4, new java.sql.Date(cal.getTimeInMillis()));
 			stmt.setFloat(5, Float.parseFloat(degree_gpa));
-			stmt.setString(6, transcript_file);
+			stmt.setInt(6, transcript_id);
 			resultSet = stmt.executeQuery();
 			if (resultSet.next())
 			{
@@ -286,6 +312,7 @@
 				insert_stmt.execute();
 			} 
 			
+			
 			//DEBUG
 			out.println("<b>== insert one degree successful ==</b><br>");
 			out.println("location = " + location + "<br>");
@@ -296,7 +323,7 @@
 			out.println("degree_month = " + degree_month + "<br>");
 			out.println("degree_year = " + degree_year + "<br>");
 			out.println("degree_gpa = " + degree_gpa + "<br>");
-			out.println("transcript_file = " + transcript_file + "<br>");
+			out.println("transcript_id = " + transcript_id + "<br>");
 			out.println("university_id = " + university_id + "<br>");
 			out.println("discipline_id = " + discipline_id + "<br>");
 			out.println("applicant_id = " + applicant_id + "<br>");
