@@ -1,4 +1,10 @@
-﻿create table countries (
+﻿create table transcript (
+	ID	serial primary key,
+	name	text,
+	content	bytea
+);
+
+create table countries (
 	ID	serial primary key,
 	name	varchar(255)
 );
@@ -49,7 +55,7 @@ create table degree (
 	degree_title	varchar(255),
 	degree_date	date,
 	gpa		real,
-	transcript	varchar(255)
+	transcript	integer references transcript (ID) NOT NULL
 );
 
 create table degree_holder (
@@ -57,4 +63,5 @@ create table degree_holder (
 	applicant	integer references applicant (ID) NOT NULL,
 	degree	integer references degree (ID) NOT NULL
 );
+
 
