@@ -1,4 +1,11 @@
-<%@page import="support.*, java.util.*" %>
+<%@page import="
+    org.apache.commons.fileupload.*, 
+    org.apache.commons.fileupload.disk.*,
+	org.apache.commons.fileupload.servlet.*, 
+	java.util.*,
+	java.io.*,
+	java.sql.*
+" %>
 
 <html>
 	<head>
@@ -76,7 +83,7 @@
 					<span class="topic">Degree Title: </span><%= degree.get("degree_title") %> <br/>
 					<span class="topic">Degree Date: </span><%= degree.get("degree_month") %> / <%= degree.get("degree_year") %> <br/>
 					<span class="topic">GPA: </span><%= degree.get("degree_gpa") %> <br/>
-					<span class="topic">Transcript: </span><%= degree.get("transcript_file") %> <br/>
+					<span class="topic">Transcript: </span><%=  ((FileItem)session.getAttribute("transcript_file")).getName() %> <br/>
 				<%
 				
 					if(e.hasMoreElements()) out.println("<hr/>");
@@ -86,10 +93,14 @@
 		</div>
 		<div class="node">
       	<%
-      		support s = new support();   	
-      		String specializationsPath = config.getServletContext().getRealPath("/support/specializations.txt");
-      		
-      		Vector specializationsVector =  s.getSpecializations(specializationsPath);
+      		Class.forName("org.postgresql.Driver");
+			Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/cse135?user=postgres&password=password");
+			con.setAutoCommit(false);
+				
+			Statement stmt = con.createStatement();
+				
+			//Get all states
+			ResultSet specializations = stmt.executeQuery("SELECT name FROM specializations ORDER BY name asc;");
       		int counter = 0;
       	%>
 			<div class="title">Select your specialization</div>
@@ -101,14 +112,15 @@
 							<select name="specialization">
 								<%
 								  String item;
-								  for (Enumeration e = specializationsVector.elements(); e.hasMoreElements();)
+								  while(specializations.next())
 								  {
-									  item = (String) e.nextElement();
+									  item = specializations.getString("name");
 									  
 								  %>
 								<option value="<%= item %>"><%= item %></option>
 								<%
 								  }
+								  specializations.close();
 								%>
 							</select>
 						</td>

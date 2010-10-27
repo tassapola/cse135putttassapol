@@ -1,5 +1,11 @@
-<%@page import="java.util.*" %>
-
+<%@page import="
+    org.apache.commons.fileupload.*, 
+    org.apache.commons.fileupload.disk.*,
+	org.apache.commons.fileupload.servlet.*, 
+	java.util.*,
+	java.io.*,
+	java.sql.*
+" %>
 
 <html>
 	<head>
@@ -78,7 +84,7 @@
 					<span class="topic">Degree Title: </span><%= degree.get("degree_title") %> <br/>
 					<span class="topic">Degree Date: </span><%= degree.get("degree_month") %> / <%= degree.get("degree_year") %> <br/>
 					<span class="topic">GPA: </span><%= degree.get("degree_gpa") %> <br/>
-					<span class="topic">Transcript: </span><%= degree.get("transcript_file") %> <br/>
+					<span class="topic">Transcript: </span><%=  ((FileItem)session.getAttribute("transcript_file")).getName()  %> <br/>
 				<%
 				
 					if(e.hasMoreElements()) out.println("<hr/>");
