@@ -28,7 +28,7 @@
 		
 		String query;
 		query = "select s.name as name, " + 
-				"count(distinct (a.first_name, a.last_name, a.middle_name)) as count from applicant a, specializations s " + 
+				"count(distinct a.id) as count from applicant a, specializations s " + 
 				"where " + 
 				"a.specialization = s.id " +
 				"group by s.name";

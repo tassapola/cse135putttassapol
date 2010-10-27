@@ -32,6 +32,7 @@
 		query = "select first_name, last_name, middle_name from " +
 				"(" +
 				"select " +
+				"a.id as id, "  +
 				"a.first_name as first_name, a.last_name as last_name, a.middle_name as middle_name, " + 
 				"s.name as specialization, u.name as university, de.degree_title as degree_title, di.name as discipline " +
 				"from applicant a, specializations s, degree de, degree_holder de_h, disciplines di, universities u " +
@@ -44,8 +45,9 @@
 			query += "and s.name = '" + reqSpec + "' ";
 		if (reqDisc != null)
 			query += "and di.name = '" + reqDisc + "' ";
+		//query += "group by a.id ";
 		//query += "order by a.last_name, a.first_name, a.middle_name, de.degree_title desc";
-		query += ") as Z group by first_name, last_name, middle_name ";
+		query += ") as Z group by id, first_name, last_name, middle_name ";
 		query += "order by last_name, first_name, middle_name";
 		ResultSet resultSet;
 		Statement stmt = conn.createStatement();
