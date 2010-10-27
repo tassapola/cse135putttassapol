@@ -14,8 +14,6 @@
 	
 	if(submit.equals("Submit Application")) 
 	{
-		nextPage = "confirmation.jsp";
-		
 		//Add data to database
 		
 		Class.forName("org.postgresql.Driver");
@@ -27,6 +25,7 @@
 		ResultSet resultSet;
 		int count;
 		
+		int applicant_id = -1;
 		int address_id  = -1;
 		int citizenship_id  = -1;
 		int residence_id  = -1;
@@ -151,7 +150,7 @@
 		
 		//Beginning of degree insertion
 		Vector degreeVector = (Vector)session.getAttribute("degree_vector");
-			
+		
 		for (Enumeration e = degreeVector.elements(); e.hasMoreElements();)
 		{
 			HashMap degree = (HashMap) e.nextElement();
@@ -267,8 +266,6 @@
 				insert_stmt.execute();
 			}
 			
-			
-			int applicant_id;
 			stmt = conn.prepareStatement("SELECT id FROM applicant WHERE first_name = ? AND last_name = ? AND middle_name = ?;");
 			stmt.setString(1, (String)session.getAttribute("first_name"));
 			stmt.setString(2, (String)session.getAttribute("last_name"));
@@ -333,6 +330,8 @@
 		 //Commit the transaction after all degrees are inserted
 		conn.commit();
 		//End of degree insertion	
+		
+		nextPage = "confirmation.jsp?applicant_id=" + applicant_id;
 	}
 	
 	
@@ -340,10 +339,7 @@
 
 <html>
 	<head>
-	<!--
-	TODO: enable after debug
 	<meta http-equiv="REFRESH" content="0;url=<%= nextPage %>"/>
-	-->
 	</head>
 	<body>
 	</body>
