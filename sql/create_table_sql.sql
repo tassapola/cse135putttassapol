@@ -64,4 +64,15 @@ create table degree_holder (
 	degree	integer references degree (ID) NOT NULL
 );
 
+create table users (
+	ID	serial primary key,
+	user_name   text,
+	password	text
+);
+
+create table user_roles (
+	ID	serial primary key,
+	user_name   text,
+	role	text
+);
 
