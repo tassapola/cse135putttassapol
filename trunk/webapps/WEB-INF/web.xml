@@ -39,7 +39,6 @@
 	</user-data-constraint>
   </security-constraint>
   
-<<<<<<< .mine
   <security-constraint>
     <web-resource-collection>
 	  <web-resource-name>Chair</web-resource-name>
@@ -53,7 +52,6 @@
 	</user-data-constraint>
   </security-constraint>
   
-=======
   <security-constraint>
     <web-resource-collection>
 	  <web-resource-name>Applicant</web-resource-name>
@@ -62,12 +60,13 @@
 	<auth-constraint>
 	  <role-name>applicant</role-name>
 	</auth-constraint>
+	<user-data-constraint>
+	  <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+	</user-data-constraint>
   </security-constraint>
   
->>>>>>> .r39
   <security-role>
     <role-name>chair</role-name>
-    <role-name>applicant</role-name>
   </security-role>
   <security-role>
     <role-name>applicant</role-name>
