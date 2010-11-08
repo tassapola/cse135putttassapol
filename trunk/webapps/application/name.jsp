@@ -1,6 +1,5 @@
 <html>
 	<head>
-	<% session.invalidate(); %>
 	<style>
 		body {margin:auto; width:800px; font-size:10pt; font-family: helvetica,Arial,verdana,sans-serif;color:#000;}
 		table {margin: 10px auto; }
