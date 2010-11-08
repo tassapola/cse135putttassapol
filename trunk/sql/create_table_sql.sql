@@ -67,7 +67,8 @@ create table degree_holder (
 create table users (
 	ID	serial primary key,
 	user_name   text,
-	password	text
+	password    text,
+	email	    text
 );
 
 create table user_roles (
