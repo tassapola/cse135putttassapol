@@ -24,7 +24,7 @@ public class SetCitizenshipListAction extends Action {
 			l.add(country);
 		}
 		stmt.close();
-		request.getSession().setAttribute(Constants.LIST_COUNTRIES, l);
+		request.setAttribute(Constants.LIST_COUNTRIES, l);
 		return mapping.findForward(Constants.FORWARD_SUCCESS);
 	}
 }

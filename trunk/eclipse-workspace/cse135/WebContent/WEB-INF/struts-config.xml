@@ -22,8 +22,10 @@
 		</action>
 		<!-- 2.a. Set citizenship list -->
 		<action path="/mvc/application/setCitizenshipList"
-				type="action.SetCitizenshipListAction">
-			<forward name="success" redirect="true"
+				type="action.SetCitizenshipListAction"
+				scope="request"
+				>
+			<forward name="success" 
 			 path="/mvc/application/citizenship.jsp"/>
 		</action>
 	</action-mappings>
