@@ -34,7 +34,23 @@
 				scope="request"
 				>
 			<forward name="success" 
+			 path="/mvc/application/setResidenceList.do"/>
+		</action>
+		<!-- 3.a. Set residence list -->
+		<action path="/mvc/application/setResidenceList"
+				type="action.SetResidenceListAction"
+				scope="request"
+				>
+			<forward name="success" 
 			 path="/mvc/application/residence.jsp"/>
+		</action>
+		<!-- 3.b. Residence -->
+		<action path="/mvc/application/residence"
+				type="action.ResidenceAction"
+				scope="request"
+				>
+			<forward name="success" 
+			 path="/mvc/application/address.jsp"/>
 		</action>
 	</action-mappings>
 	
