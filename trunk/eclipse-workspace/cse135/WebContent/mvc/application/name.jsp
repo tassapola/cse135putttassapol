@@ -20,6 +20,7 @@
 				Graduate Admission System
 			</div>
 		</div>
+		<html:errors/>
 		<html:form action="/mvc/application/name">
 			First name: <html:text property="firstName"/><br>
 			Last name: <html:text property="lastName"/><br>
