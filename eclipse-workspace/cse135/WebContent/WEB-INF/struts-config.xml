@@ -10,12 +10,19 @@
 	</form-beans>
 	
 	<action-mappings>
+		<!-- 1. Applicant/Name -->
 		<action path="/mvc/application/name"
 				type="action.NameAction"
 				validate="true"
 				scope="request"
 				input="/mvc/application/name.jsp"
 				name="NameForm">
+			<forward name="success" redirect="true"
+			 path="/mvc/application/setCitizenshipList.do"/>
+		</action>
+		<!-- 2.a. Set citizenship list -->
+		<action path="/mvc/application/setCitizenshipList"
+				type="action.SetCitizenshipListAction">
 			<forward name="success" redirect="true"
 			 path="/mvc/application/citizenship.jsp"/>
 		</action>
