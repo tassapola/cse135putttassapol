@@ -28,6 +28,14 @@
 			<forward name="success" 
 			 path="/mvc/application/citizenship.jsp"/>
 		</action>
+		<!-- 2.b. Citizenship -->
+		<action path="/mvc/application/citizenship"
+				type="action.CitizenshipAction"
+				scope="request"
+				>
+			<forward name="success" 
+			 path="/mvc/application/residence.jsp"/>
+		</action>
 	</action-mappings>
 	
 	<message-resources parameter="MessageResources" />

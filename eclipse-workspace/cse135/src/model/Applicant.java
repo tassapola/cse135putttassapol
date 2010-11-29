@@ -6,6 +6,8 @@ public class Applicant {
 	private String firstName;
 	private String lastName;
 	private String middleName;
+	private String citizenship;
+	
 	
 	public String getFirstName() {
 		return firstName;
@@ -29,6 +31,16 @@ public class Applicant {
 
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
+	}
+
+	
+	public String getCitizenship() {
+		return citizenship;
+	}
+
+	public void setCitizenship(String citizenship) {
+		this.citizenship = citizenship;
+		System.out.println("setting citizenship = " + citizenship);
 	}
 
 	public void setNames(NameForm f) {
