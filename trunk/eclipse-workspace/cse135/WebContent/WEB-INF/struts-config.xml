@@ -18,6 +18,7 @@
 				type="application.NameAction"
 				validate="true"
 				scope="request"
+				input="/mvc/application/name.jsp"
 				name="NameForm"
 				>
 				<forward name="success" path="/mvc/application/citizenship.jsp"/>
