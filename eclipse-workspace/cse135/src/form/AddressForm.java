@@ -74,17 +74,32 @@ public class AddressForm extends ActionForm {
 								) 
 	{
 		ActionErrors errors = new ActionErrors();
-		/*
-		if (firstName.equals("")) 
-			errors.add("firstName", new ActionMessage("error.firstname.required"));
-		else if (firstName.matches(".*\\d.*"))
-			errors.add("firstname", new ActionMessage("error.firstname.invalid"));
-		
-		if (lastName.equals(""))
-			errors.add("lastName", new ActionMessage("error.lastname.required"));
-		else if (lastName.matches(".*\\d.*")) 
-			errors.add("lastName", new ActionMessage("error.lastname.invalid"));
-		*/
+		//TODO: us and non-us
+		if (street.equals("")) 
+			errors.add("street", new ActionMessage("error.street.required"));
+		if (city.equals("")) 
+			errors.add("city", new ActionMessage("error.city.required"));
+		//US
+		//state and zip code
+		if (state.equals("")) 
+			errors.add("state", new ActionMessage("error.state.required"));
+		if (zipcode.equals("")) 
+			errors.add("zipcode", new ActionMessage("error.zipcode.required"));
+		else
+			if (!(zipcode.matches("[0-9\\-\\s]*")))
+				errors.add("zipcode", new ActionMessage("error.zipcode.invalid"));
+		//non-US
+		//country code
+		if (areacode.equals("")) 
+			errors.add("arecode", new ActionMessage("error.areacode.required"));
+		else
+			if (!(areacode.matches("[0-9\\-\\s]*")))
+				errors.add("areacode", new ActionMessage("error.areacode.invalid"));
+		if (telephone.equals("")) 
+			errors.add("telephone", new ActionMessage("error.telephone.required"));
+		else
+			if (!(telephone.matches("[0-9\\-\\s]*")))
+				errors.add("telephone", new ActionMessage("error.telephone.invalid"));
 		return errors;
 	}
 	

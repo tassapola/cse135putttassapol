@@ -23,6 +23,7 @@
 				Graduate Admission System
 			</div>
 		</div>
+		<html:errors/>
 		<%
 		 	Applicant a = (Applicant) session.getAttribute(Constants.ATTR_NAME_APPLICANT);
 		%>
