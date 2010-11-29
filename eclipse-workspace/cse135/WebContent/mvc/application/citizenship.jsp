@@ -22,12 +22,15 @@
 				Graduate Admission System
 			</div>
 		</div>
+		<%
+		 	Applicant a = (Applicant) session.getAttribute(Constants.ATTR_NAME_APPLICANT);
+		%>
 		<div class="node">
 			<div class="title">Applicant Name</div>
 			<div class="info">
-				<span class="topic">First name:</span> <%= session.getAttribute("first_name")%> <br/>
-				<span class="topic">Last name: </span><%= session.getAttribute("last_name")%> <br/>
-				<span class="topic">Middle name: </span><%= session.getAttribute("middle_name")%> <br/>
+				<span class="topic">First name:</span> <%= a.getFirstName() %> <br/>
+				<span class="topic">Last name: </span><%= a.getLastName() %> <br/>
+				<span class="topic">Middle name: </span><%= a.getMiddleName() %> <br/>
 			</div>
 		</div>
 		
@@ -43,7 +46,14 @@
 					String country = it.next();
 					if (counter % 3 == 0) out.println("<tr>");
 			%>
-					<td><a href="collect_session.jsp?next=residence.jsp&citizenship=<%= country %>"> <%= country %> </a></td> 
+					<td>
+					<html:link action="/mvc/application/residence">
+					  <html:param name="citizenship">
+					     <%= country %>
+					  </html:param>
+					<%= country %>
+					</html:link>
+					</td> 
 			<%  
 					if (counter % 3 == 2) out.println("</tr>");
 					counter ++;
@@ -51,6 +61,7 @@
 				if (counter % 3 != 0) out.println("</tr>");
 			%>
 			</table>
+			<html:link page="/mvc/application/residence.do">aa</html:link>
 		</div>
 	</body>
 </html>
