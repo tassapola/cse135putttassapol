@@ -37,13 +37,13 @@ public class NameForm extends ActionForm {
 								 HttpServletRequest request
 								) {
 		ActionErrors errors = new ActionErrors();
-		//System.out.println("validating");
-		//System.out.println(firstName + " " + lastName);
 		if (firstName.equals("") || lastName.equals("")) {
-			errors.add("err1", new ActionMessage("errors.required", "first name/last name"));
-			//System.out.println("adding error");
+			errors.add("err1", new ActionMessage("errors.required", "first name and/or last name is blank."));
+		} else {
+			if (firstName.matches(".*\\d.*") || lastName.matches(".*\\d.*")) {
+				errors.add("err1", new ActionMessage("errors.required", "first name and/or last name contains digits."));
+			}
 		}
-		//TODO: Check for digits
 		return errors;
 	}
 	
