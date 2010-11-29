@@ -27,4 +27,6 @@
 			 path="/mvc/application/citizenship.jsp"/>
 		</action>
 	</action-mappings>
+	
+	<message-resources parameter="MessageResources" />
 </struts-config>

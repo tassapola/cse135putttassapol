@@ -35,15 +35,19 @@ public class NameForm extends ActionForm {
 
 	public ActionErrors validate(ActionMapping mappping,
 								 HttpServletRequest request
-								) {
+								) 
+	{
 		ActionErrors errors = new ActionErrors();
-		if (firstName.equals("") || lastName.equals("")) {
-			errors.add("err1", new ActionMessage("errors.required", "first name and/or last name is blank."));
-		} else {
-			if (firstName.matches(".*\\d.*") || lastName.matches(".*\\d.*")) {
-				errors.add("err1", new ActionMessage("errors.required", "first name and/or last name contains digits."));
-			}
-		}
+		if (firstName.equals("")) 
+			errors.add("firstName", new ActionMessage("error.firstname.required"));
+		else if (firstName.matches(".*\\d.*"))
+			errors.add("firstname", new ActionMessage("error.firstname.invalid"));
+		
+		if (lastName.equals(""))
+			errors.add("lastName", new ActionMessage("error.lastname.required"));
+		else if (lastName.matches(".*\\d.*")) 
+			errors.add("lastName", new ActionMessage("error.lastname.invalid"));
+		
 		return errors;
 	}
 	
