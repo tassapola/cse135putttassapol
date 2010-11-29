@@ -46,4 +46,10 @@ public class NameForm extends ActionForm {
 		//TODO: Check for digits
 		return errors;
 	}
+	
+	public void reset(ActionMapping mapping, HttpServletRequest request) {
+		setFirstName(null);
+		setLastName(null);
+		setMiddleName(null);
+	}
 }
