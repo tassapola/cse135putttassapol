@@ -6,6 +6,7 @@ import model.*;
 import org.apache.struts.action.*;
 
 import form.NameForm;
+import form.ResidencyForm;
 
 public class ResidencyAction extends Action {
 
@@ -16,7 +17,7 @@ public class ResidencyAction extends Action {
 		if (a == null) {
 			a = new Applicant();
 		}
-		a.setResidency(request.getParameter("residency"));
+		a.setResidency(((ResidencyForm) form).getResidency());
 		request.getSession().setAttribute(Constants.ATTR_NAME_APPLICANT, a);
 		return mapping.findForward(Constants.FORWARD_SUCCESS);
 	}
