@@ -9,6 +9,8 @@
 				   type="form.NameForm"/>
 		<form-bean name="AddressForm" 
 				   type="form.AddressForm"/>
+		<form-bean name="ResidencyForm" 
+				   type="form.ResidencyForm"/>
 	</form-beans>
 	
 	<action-mappings>
@@ -69,7 +71,9 @@
 		<!-- 5. Residency for non-US-->
 		<action path="/mvc/application/residency"
 				type="action.ResidencyAction"
+				validate="false"
 				scope="request"
+				name="ResidencyForm"
 				>
 			<forward name="success" 
 			 path="/mvc/application/provide_degree_location.jsp"/>

@@ -75,15 +75,15 @@
 				<table>
 				<tr class="field-container"> 
 					<td>
-					<html:radio name="residency" value="US Permanent Resident"/>
-					<input type="radio" name="residency" value="US Permanent Resident" checked="yes" />
+					<!--  html:form/html:radio need Form object -->
+					<html:radio property="residency" value="US Permanent Resident"/>
 					</td>
 					<td class="field">US Permanent Resident </td>
 				</tr>
 				<tr class="field-container"> 
 					<td>
-					<html:radio name="residency" value="Non-Resident"/>
-					<input type="radio" name="residency" value="Non-Resident"/></td>
+					<html:radio property="residency" value="Non-Resident"/>
+					</td>
 					<td class="field">Non-Resident </td>
 				</tr>
 				</table>
