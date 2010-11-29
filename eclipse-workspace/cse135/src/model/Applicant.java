@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Vector;
+
 import form.*;
 
 public class Applicant {
@@ -17,6 +19,11 @@ public class Applicant {
 	private String countrycode;
 	private String areacode;
 	private String telephone;
+	Vector<Degree> degreeVector;
+	
+	public Applicant() {
+		degreeVector = new Vector<Degree>();
+	}
 	
 	public String getFirstName() {
 		return firstName;
@@ -69,7 +76,7 @@ public class Applicant {
 
 	public void setResidency(String residency) {
 		this.residency = residency;
-		System.out.println("setting residency = " + residency);
+		//System.out.println("setting residency = " + residency);
 	}
 
 	public String getStreet() {
@@ -158,4 +165,13 @@ public class Applicant {
 		}
 		//System.out.println("set street = " + street);
 	}
+	
+	public void addDegree(Degree d) {
+		degreeVector.add(d);
+	}
+
+	public Vector<Degree> getDegreeVector() {
+		return degreeVector;
+	}
+	
 }

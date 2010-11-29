@@ -76,7 +76,23 @@
 				name="ResidencyForm"
 				>
 			<forward name="success" 
+			 path="/mvc/application/setUniversityLocList.do"/>
+		</action>
+		<!-- 6.a. Set university locations list -->
+		<action path="/mvc/application/setUniversityLocList"
+				type="action.SetUniversityLocListAction"
+				scope="request"
+				>
+			<forward name="success" 
 			 path="/mvc/application/provide_degree_location.jsp"/>
+		</action>
+		<!-- 6.b. Degree locations -->
+		<action path="/mvc/application/provide_degree_location"
+				type="action.ProvideDegreeLocAction"
+				scope="request"
+				>
+			<forward name="success" 
+			 path="/mvc/application/provide_degree_university.jsp"/>
 		</action>
 	</action-mappings>
 	
