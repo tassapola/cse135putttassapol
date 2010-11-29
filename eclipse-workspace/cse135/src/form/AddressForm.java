@@ -12,6 +12,7 @@ public class AddressForm extends ActionForm {
 	private String countrycode;
 	private String areacode;
 	private String telephone;
+	private String isUsResidence;
 		
 	public String getStreet() {
 		return street;
@@ -68,6 +69,16 @@ public class AddressForm extends ActionForm {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
+	
+	
+
+	public String getIsUsResidence() {
+		return isUsResidence;
+	}
+
+	public void setIsUsResidence(String isUsResidence) {
+		this.isUsResidence = isUsResidence;
+	}
 
 	public ActionErrors validate(ActionMapping mappping,
 								 HttpServletRequest request
@@ -79,17 +90,27 @@ public class AddressForm extends ActionForm {
 			errors.add("street", new ActionMessage("error.street.required"));
 		if (city.equals("")) 
 			errors.add("city", new ActionMessage("error.city.required"));
-		//US
-		//state and zip code
-		if (state.equals("")) 
-			errors.add("state", new ActionMessage("error.state.required"));
+		
+		if (isUsResidence.equals("true")) {
+			//US
+			//state
+			if (state.equals("")) 
+				errors.add("state", new ActionMessage("error.state.required"));
+		}  else {
+			//non-US
+			//country code
+			if (countrycode.equals("")) 
+				errors.add("countrycode", new ActionMessage("error.countrycode.required"));
+			else
+				if (!(countrycode.matches("[0-9\\-\\s]*")))
+					errors.add("countrycode", new ActionMessage("error.countrycode.invalid"));
+		}
+		
 		if (zipcode.equals("")) 
 			errors.add("zipcode", new ActionMessage("error.zipcode.required"));
 		else
 			if (!(zipcode.matches("[0-9\\-\\s]*")))
 				errors.add("zipcode", new ActionMessage("error.zipcode.invalid"));
-		//non-US
-		//country code
 		if (areacode.equals("")) 
 			errors.add("arecode", new ActionMessage("error.areacode.required"));
 		else

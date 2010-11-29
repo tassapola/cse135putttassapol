@@ -59,6 +59,7 @@
 					if (a.getResidence().equals("United States"))
 					{
 					%>
+					<html:hidden property="isUsResidence" value="true"/>
 					<tr class="field-container"> 
 						<td class="label">State:</td>
 						<td class="field"><html:text property="state"/></td>
@@ -72,6 +73,7 @@
 					if (!a.getResidence().equals("United States"))
 					{
 					%>
+					<html:hidden property="isUsResidence" value="false"/>
 					<tr class="field-container"> 
 						<td class="label">Country code:</td>
 						<td class="field"><html:text property="countrycode" maxlength="3" size="3"/>
