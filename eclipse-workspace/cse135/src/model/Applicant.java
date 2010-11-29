@@ -7,7 +7,7 @@ public class Applicant {
 	private String lastName;
 	private String middleName;
 	private String citizenship;
-	
+	private String residence;
 	
 	public String getFirstName() {
 		return firstName;
@@ -40,7 +40,17 @@ public class Applicant {
 
 	public void setCitizenship(String citizenship) {
 		this.citizenship = citizenship;
-		System.out.println("setting citizenship = " + citizenship);
+		//System.out.println("setting citizenship = " + citizenship);
+	}
+
+	
+	public String getResidence() {
+		return residence;
+	}
+
+	public void setResidence(String residence) {
+		this.residence = residence;
+		//System.out.println("setting residence = " + residence);
 	}
 
 	public void setNames(NameForm f) {
