@@ -5,23 +5,18 @@
 <struts-config>
 
 	<form-beans>
-		<form-bean
-	name="NameForm"
-	type="application.NameForm"/>
-	
+		<form-bean name="NameForm" 
+				   type="form.NameForm"/>
 	</form-beans>
 	
-
 	<action-mappings>
-	
 		<action path="/mvc/application/name"
-				type="application.NameAction"
+				type="action.NameAction"
 				validate="true"
 				scope="request"
 				input="/mvc/application/name.jsp"
-				name="NameForm"
-				>
-				<forward name="success" path="/mvc/application/citizenship.jsp"/>
+				name="NameForm">
+			<forward name="success" path="/mvc/application/citizenship.jsp"/>
 		</action>
 	</action-mappings>
 </struts-config>
