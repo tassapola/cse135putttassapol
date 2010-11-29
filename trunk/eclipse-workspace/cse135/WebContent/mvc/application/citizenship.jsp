@@ -47,7 +47,7 @@
 					if (counter % 3 == 0) out.println("<tr>");
 			%>
 					<td>
-					<html:link action="/mvc/application/residence">
+					<html:link action="/mvc/application/citizenship.do">
 					  <html:param name="citizenship">
 					     <%= country %>
 					  </html:param>
