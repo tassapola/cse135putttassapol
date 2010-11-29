@@ -3,9 +3,23 @@
 <!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
 
 <struts-config>
+
+	<form-beans>
+		<form-bean
+	name="NameForm"
+	type="application.NameForm"/>
+	
+	</form-beans>
+	
+
 	<action-mappings>
+	
 		<action path="/mvc/application/name"
-				type="application.NameAction">
+				type="application.NameAction"
+				validate="true"
+				scope="request"
+				name="NameForm"
+				>
 				<forward name="success" path="/mvc/application/citizenship.jsp"/>
 		</action>
 	</action-mappings>
