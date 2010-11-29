@@ -7,6 +7,8 @@
 	<form-beans>
 		<form-bean name="NameForm" 
 				   type="form.NameForm"/>
+		<form-bean name="AddressForm" 
+				   type="form.AddressForm"/>
 	</form-beans>
 	
 	<action-mappings>
@@ -51,6 +53,18 @@
 				>
 			<forward name="success" 
 			 path="/mvc/application/address.jsp"/>
+		</action>
+		<!-- 4. Address -->
+		<action path="/mvc/application/address"
+				type="action.AddressAction"
+				validate="true"
+				scope="request"
+				input="/mvc/application/address.jsp"
+				name="AddressForm">
+			<forward name="success.us" redirect="true"
+			 path="/mvc/application/provide_degree_location.jsp"/>
+			<forward name="success.non_us" redirect="true"
+			 path="/mvc/application/residency.jsp"/>
 		</action>
 	</action-mappings>
 	
