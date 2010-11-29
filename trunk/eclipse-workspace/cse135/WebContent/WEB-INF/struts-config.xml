@@ -16,7 +16,8 @@
 				scope="request"
 				input="/mvc/application/name.jsp"
 				name="NameForm">
-			<forward name="success" path="/mvc/application/citizenship.jsp"/>
+			<forward name="success" redirect="true"
+			 path="/mvc/application/citizenship.jsp"/>
 		</action>
 	</action-mappings>
 </struts-config>
