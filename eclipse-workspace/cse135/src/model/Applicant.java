@@ -7,7 +7,8 @@ public class Applicant {
 	private String lastName;
 	private String middleName;
 	private String citizenship;
-	private String residence;
+	private String residence; 
+	private boolean isUsResidence; //true if residence=="United States" (for ease of use)
 	private String street;
 	private String city;
 	private String state;
@@ -117,6 +118,14 @@ public class Applicant {
 		this.telephone = telephone;
 	}
 
+	public boolean getIsUsResidence() {
+		return isUsResidence;
+	}
+
+	public void setIsUsResidence(boolean isUsResidence) {
+		this.isUsResidence = isUsResidence;
+	}
+
 	public void setNames(NameForm f) {
 		firstName = f.getFirstName();
 		lastName = f.getLastName();
@@ -132,6 +141,11 @@ public class Applicant {
 		countrycode = form.getCountrycode();
 		areacode = form.getAreacode();
 		telephone = form.getTelephone();
+		if (form.getIsUsResidence().equals("true")) {
+			setIsUsResidence(true);
+		} else {
+			setIsUsResidence(false);
+		}
 		//System.out.println("set street = " + street);
 	}
 }

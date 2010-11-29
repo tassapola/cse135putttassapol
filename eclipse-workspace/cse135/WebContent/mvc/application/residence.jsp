@@ -1,8 +1,6 @@
 <%@ page language="java" import="java.sql.*, java.util.*, model.*" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 
-<% String nextPage = "collect_session.jsp?next=address.jsp&"; %>
-
 <html>
 	<head>
 	<style>
