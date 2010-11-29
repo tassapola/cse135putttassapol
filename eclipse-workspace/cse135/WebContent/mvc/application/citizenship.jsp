@@ -37,7 +37,7 @@
 		<div class="node">
 			<div class="title">Please select your country of citizenship:</div>
 			<%
-				LinkedList<String> countries = (LinkedList<String>) request.getSession().getAttribute(Constants.LIST_COUNTRIES);
+				LinkedList<String> countries = (LinkedList<String>)request.getAttribute(Constants.LIST_COUNTRIES);
 			%>
 			<table>
 			<%
