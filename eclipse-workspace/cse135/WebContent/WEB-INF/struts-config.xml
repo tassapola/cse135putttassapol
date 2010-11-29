@@ -66,6 +66,14 @@
 			<forward name="success.non_us" redirect="true"
 			 path="/mvc/application/residency.jsp"/>
 		</action>
+		<!-- 5. Residency for non-US-->
+		<action path="/mvc/application/residency"
+				type="action.ResidencyAction"
+				scope="request"
+				>
+			<forward name="success" 
+			 path="/mvc/application/provide_degree_location.jsp"/>
+		</action>
 	</action-mappings>
 	
 	<message-resources parameter="MessageResources" />

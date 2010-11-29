@@ -9,6 +9,7 @@ public class Applicant {
 	private String citizenship;
 	private String residence; 
 	private boolean isUsResidence; //true if residence=="United States" (for ease of use)
+	private String residency;
 	private String street;
 	private String city;
 	private String state;
@@ -62,6 +63,15 @@ public class Applicant {
 	}
 
 	
+	public String getResidency() {
+		return residency;
+	}
+
+	public void setResidency(String residency) {
+		this.residency = residency;
+		System.out.println("setting residency = " + residency);
+	}
+
 	public String getStreet() {
 		return street;
 	}
