@@ -71,14 +71,19 @@
 		<br/>
 		<div class="node">
 			<div class="title">Residency:</div>
-			<form action="collect_session.jsp" method="GET">
+			<html:form action="/mvc/application/residency.do">
 				<table>
 				<tr class="field-container"> 
-					<td><input type="radio" name="residency" value="US Permanent Resident" checked="yes" /></td>
+					<td>
+					<html:radio name="residency" value="US Permanent Resident"/>
+					<input type="radio" name="residency" value="US Permanent Resident" checked="yes" />
+					</td>
 					<td class="field">US Permanent Resident </td>
 				</tr>
 				<tr class="field-container"> 
-					<td><input type="radio" name="residency" value="Non-Resident"/></td>
+					<td>
+					<html:radio name="residency" value="Non-Resident"/>
+					<input type="radio" name="residency" value="Non-Resident"/></td>
 					<td class="field">Non-Resident </td>
 				</tr>
 				</table>
@@ -86,7 +91,7 @@
 				<div class="field-container"> 
 					<input type="submit" name="submit" value="submit"/> 
 				</div>
-			</form>
+			</html:form>
 		</div>
 	</body>
 </html>
