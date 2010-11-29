@@ -23,35 +23,9 @@
 		<html:form action="/mvc/application/name">
 			First name: <html:text property="firstName"/><br>
 			Last name: <html:text property="lastName"/><br>
-			Middle name: <html:text property="middleName"/></br>
+			Middle name: <html:text property="middleName"/><br>
 			<html:submit value="Submit"/>
 			<html:reset />
 		</html:form>
-		<!--
-		<form action="name.do" method="GET">
-			<div class="node">
-				<div class="title">Applicant Name</div>
-				<table >
-					<tr class="field-container"> 
-						<td class="label">First Name:</td>
-						<td class="field"> <input type="text" name="first_name"/> </td>
-					</tr>
-					<tr class="field-container"> 
-						<td class="label">Last Name:</td>
-						<td class="field"> <input type="text" name="last_name"/> </td>
-					</tr>
-					<tr class="field-container"> 
-						<td class="label">Middle Name:</td>
-						<td class="field"><input type="text" name="middle_name"/> </td>
-					</tr>
-				</table>
-				<input type="hidden" name="next" value="citizenship.jsp"/>
-			</div>
-			<div class="field-container"> 
-				<input type="submit" name="submit" value="submit"/> 
-				<input type="reset" name="reset" value="clear"/> 
-			</div>
-		</form>
-		-->
 	</body>
 </html>
