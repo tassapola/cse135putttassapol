@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.sql.*, java.util.*, model.*" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 
 <html>
 	<head>
@@ -23,13 +24,38 @@
 			</div>
 		</div>
 		<div class="node">
-			<div class="title">Review</div>
+			<logic:notPresent name="reviewer">
+				<div class="title">Applications</div>
+			</logic:notPresent>
+			<logic:present name="reviewer">
+				<div class="title">Applications by <%= request.getAttribute("reviewer") %></div>
+			</logic:present>
 			<div class="info">
-				<ul>
-				<li><html:link action="/mvc/chair/reviewers">Applications by reviewer</html:link></li>
-				<li><html:link action="/mvc/chair/specializations">Specialization analytics</html:link></li>
-				<li><html:link action="/mvc/chair/disciplines">Discipline analytics</html:link></li>
-				</ul>
+				<%
+					ArrayList<String> s = (ArrayList<String>)request.getAttribute("specialization");
+					ArrayList<Integer> c = (ArrayList<Integer>)request.getAttribute("count");
+				%>
+					<table>
+					<tr>
+						<th>Discipline</th>
+						<th></th>
+					</tr>
+					<%
+						for (int i = 0; i < s.size(); i++) {							
+					%>
+						<tr>
+							<td><%= s.get(i) %></td>
+							<td>
+								<html:link action="/mvc/chair/viewspecialization">
+									<html:param name="specialization"><%= s.get(i) %></html:param>
+									<%= c.get(i) %>
+								</html:link>
+							</td> 
+						</tr> 
+					<%  
+						} 
+					%>
+					</table>
 			</div>
 		</div>
 	</body>
