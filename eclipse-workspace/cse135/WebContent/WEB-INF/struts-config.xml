@@ -12,8 +12,11 @@
 				   type="form.ResidencyForm"/>
 		<form-bean name="AddReviewerForm" 
 				   type="form.AddReviewerForm"/>
+		<form-bean name="ProvideDegreeLocForm" 
+				   type="form.ProvideDegreeLocForm"/>
 		<form-bean name="StartReviewForm" 
 				   type="form.StartReviewForm"/>				   
+
 	</form-beans>
 	<action-mappings>
 		<!-- 1. Applicant/Name -->
@@ -92,11 +95,20 @@
 		<action path="/mvc/application/provide_degree_location"
 				type="action.ProvideDegreeLocAction"
 				scope="request"
+				name="ProvideDegreeLocForm"
 				>
 			<forward name="success" 
 			 path="/mvc/application/provide_degree_university.jsp"/>
 		</action>
-		
+		<!-- 7. Degree university -->
+		<action path="/mvc/application/provide_degree_university"
+				type="action.ProvideDegreeUniAction"
+				scope="request"
+				
+				>
+			<forward name="success" 
+			 path="/mvc/application/provide_degree_discipline.jsp"/>
+		</action>
 		<!-- Chair Home -->
 		<action path="/mvc/chair/ChairHome"
 				type="action.ChairHomeAction"

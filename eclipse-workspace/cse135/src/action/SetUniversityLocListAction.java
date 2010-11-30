@@ -34,6 +34,7 @@ public class SetUniversityLocListAction extends Action {
 		}
 		stmt.close();
 		request.setAttribute(Constants.LIST_UNIVERSITY_COUNTRIES, l2);
+		
 		return mapping.findForward(Constants.FORWARD_SUCCESS);
 	}
 }
