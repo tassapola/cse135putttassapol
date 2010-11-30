@@ -44,20 +44,21 @@
 				<%
 					LinkedList<String> reviewers = (LinkedList<String>)request.getAttribute(Constants.LIST_REVIEWERS);
 				%>
-				<table>
-				<%
-					for (Iterator<String> it = reviewers.iterator(); it.hasNext();) {
-						String reviewer = it.next();
-				%>
-					<tr>
-						<td>
-							<%= reviewer %>
-						</td>
-					</tr> 
-				<%  
-					} 
-				%>
-				</table>
+					<ul>
+					<%
+						for (Iterator<String> it = reviewers.iterator(); it.hasNext();) {
+							String reviewer = it.next();
+					%>
+						<li>
+							<html:form action="/mvc/chair/removereviewer">
+								<%= reviewer %>  <html:submit>Delete</html:submit>
+								<html:hidden property="username" value="<%= reviewer%>"/>
+							</html:form> 
+						</li> 
+					<%  
+						} 
+					%>
+					</ul>
 			</div>
 		</div>
 	</body>

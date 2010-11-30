@@ -16,6 +16,8 @@
 				   type="form.ProvideDegreeLocForm"/>
 		<form-bean name="ProvideDegreeUniForm" 
 				   type="form.ProvideDegreeUniForm"/>
+		<form-bean name="RemoveReviewerForm" 
+				   type="form.RemoveReviewerForm"/>
 		<form-bean name="StartReviewForm" 
 				   type="form.StartReviewForm"/>				   
 
@@ -125,6 +127,15 @@
 				scope="request"
 				input="/mvc/chair/ChairHome.do"
 				name="AddReviewerForm">
+			<forward name="success" redirect="true"
+			 path="/mvc/chair/ChairHome.do"/>
+		</action>
+		<action path="/mvc/chair/removereviewer"
+				type="action.RemoveReviewerAction"
+				validate="true"
+				scope="request"
+				input="/mvc/chair/ChairHome.do"
+				name="RemoveReviewerForm">
 			<forward name="success" redirect="true"
 			 path="/mvc/chair/ChairHome.do"/>
 		</action>
