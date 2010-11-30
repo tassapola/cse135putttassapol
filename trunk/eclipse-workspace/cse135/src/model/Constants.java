@@ -9,4 +9,6 @@ public class Constants {
 	public static final String LIST_COUNTRIES = "countries";
 	public static final String LIST_UNIVERSITY_STATES = "university_states";
 	public static final String LIST_UNIVERSITY_COUNTRIES = "university_countries";
+	
+	public static final String LIST_REVIEWERS = "reviewers";
 }

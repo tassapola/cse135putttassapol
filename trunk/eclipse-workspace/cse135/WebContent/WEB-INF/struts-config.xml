@@ -3,7 +3,6 @@
 <!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
 
 <struts-config>
-
 	<form-beans>
 		<form-bean name="NameForm" 
 				   type="form.NameForm"/>
@@ -11,8 +10,9 @@
 				   type="form.AddressForm"/>
 		<form-bean name="ResidencyForm" 
 				   type="form.ResidencyForm"/>
+		<form-bean name="AddReviewerForm" 
+				   type="form.AddReviewerForm"/>
 	</form-beans>
-	
 	<action-mappings>
 		<!-- 1. Applicant/Name -->
 		<action path="/mvc/application/name"
@@ -94,7 +94,24 @@
 			<forward name="success" 
 			 path="/mvc/application/provide_degree_university.jsp"/>
 		</action>
+		
+		<!-- Chair Home -->
+		<action path="/mvc/chair/ChairHome"
+				type="action.ChairHomeAction"
+				scope="request"
+				>
+			<forward name="case1" path="/mvc/chair/prereview.jsp"/>
+			<forward name="case2" path="/mvc/application/name.jsp"/>
+		</action>
+		<action path="/mvc/chair/addreviewer"
+				type="action.AddReviewerAction"
+				validate="true"
+				scope="request"
+				input="/mvc/chair/ChairHome.do"
+				name="AddReviewerForm">
+			<forward name="success" redirect="true"
+			 path="/mvc/chair/ChairHome.do"/>
+		</action>
 	</action-mappings>
-	
 	<message-resources parameter="MessageResources" />
 </struts-config>
