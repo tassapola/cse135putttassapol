@@ -155,13 +155,14 @@
 		</action>
 		<!-- 10.b. Specialization (submission)-->
 		<action path="/mvc/application/specialization"
-				type="action.SpecializationAction"
+				type="action.AppSpecializationAction"
 				scope="request"
 				name="SpecializationForm"
 				>
 			<forward name="success" 
 			 path="/mvc/application/verification.jsp"/>
 		</action>
+		<!-- 11. Verification -->
 		<action path="/mvc/application/verification"
 				type="action.VerificationAction"
 				scope="request"
@@ -178,7 +179,7 @@
 				scope="request"
 				name="EmptyForm"
 				>
-			<forward name="success" redirect="true"
+			<forward name="success" 
 			 path="/mvc/application/confirmation.jsp"/>
 		</action>
 		
