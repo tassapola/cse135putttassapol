@@ -31,10 +31,9 @@
 				<span class="topic">Discipline: </span><%= session.getAttribute(Constants.SESS_DISCIPLINE) %> <%= (session.getAttribute(Constants.SESS_DISCIPLINE).equals("other"))? "-" + session.getAttribute(Constants.SESS_OTHER_DISCIPLINE):"" %> <br/>
 				<span class="topic">Degree Title: </span><%= session.getAttribute(Constants.SESS_DEG_TITLE) %> <br/>
 				<span class="topic">Degree Date: </span><%= session.getAttribute(Constants.SESS_DEG_MONTH) %> / <%= session.getAttribute(Constants.SESS_DEG_YEAR) %> <br/>
-				<span class="topic">GPA: </span><%= session.getAttribute(Constants.SESS_DEG_GPA) %> <br/>
-				<!-- 
-				<span class="topic">Transcript: </span><%//= ((FileItem)session.getAttribute("transcript_file")).getName() %> <br/>
-				 -->
+				<span class="topic">GPA: </span><%= session.getAttribute(Constants.SESS_DEG_GPA) %> <br/> 
+				<span class="topic">Transcript: </span><%= session.getAttribute(Constants.SESS_DEG_TRANSCRIPT)%> <br/>
+				
 			</div>
 		</div>
 		<div class="node">
