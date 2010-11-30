@@ -12,7 +12,7 @@ import form.NameForm;
 import form.ProvideDegreeLocForm;
 import form.ResidencyForm;
 
-public class ProvideDegreeLocAction extends Action {
+public class ProvideDegreeUniAction extends Action {
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 								 HttpServletRequest request,
