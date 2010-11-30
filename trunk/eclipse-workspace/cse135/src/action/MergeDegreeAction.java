@@ -29,7 +29,7 @@ public class MergeDegreeAction extends Action {
 	    Applicant a = (Applicant) request.getSession().getAttribute(Constants.ATTR_NAME_APPLICANT);
 	    a.addDegree(degree);
 	    MergeDegreeForm f = (MergeDegreeForm) form;
-	    System.out.println("form submit = " + f.getSubmit());
+	    //System.out.println("form submit = " + f.getSubmit());
 	    if (f.getSubmit().equals("Submit Next Degree"))
 	    	return mapping.findForward(Constants.FORWARD_MORE_DEGREE_YES);
 	    else 

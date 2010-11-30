@@ -105,11 +105,11 @@ public class ProvideDegreeDiscForm extends ActionForm {
 			) 
 	{
 		ActionErrors errors = new ActionErrors();
-		System.out.println("validation provide disc form");
+		//System.out.println("validation provide disc form");
 		//cover many cases
 		if (!degreeGpa.matches("\\d+[.]*\\d*")) {
 			errors.add("gpa", new ActionMessage("error.gpa.invalid"));
-			System.out.println("adding gpa invalid");
+			//System.out.println("adding gpa invalid");
 		}
 		return errors;
 	}
