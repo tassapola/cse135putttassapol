@@ -115,21 +115,28 @@
 			<forward name="success" 
 			 path="/mvc/application/provide_degree_university2.jsp"/>
 		</action>
-		<!-- 7. Degree university -->
+		<!-- 7.a. Degree university -->
 		<action path="/mvc/application/provide_degree_university"
 				type="action.ProvideDegreeUniAction"
 				scope="request"
 				name="ProvideDegreeUniForm"
 				>
 			<forward name="success" 
+			 path="/mvc/application/setDisciplineList.do"/>
+		</action>
+		<!-- 8.a. set discipline list-->
+		<action path="/mvc/application/setDisciplineList"
+				type="action.SetDisciplineListAction"
+				scope="request">
+			<forward name="success" 
 			 path="/mvc/application/provide_degree_discipline.jsp"/>
 		</action>
-		<!-- 8. Degree disciplines / GPA -->
+		<!-- 8.b. Degree disciplines / GPA -->
 		<action path="/mvc/application/provide_degree_discipline"
 				type="action.ProvideDegreeDiscAction"
 				validate="true"
 				scope="request"
-				input="/mvc/application/provide_degree_discipline.jsp"
+				input="/mvc/application/setDisciplineList.do"
 				name="ProvideDegreeDiscForm">
 			<forward name="success" redirect="true"
 			 path="/mvc/application/more_degree.jsp"/>

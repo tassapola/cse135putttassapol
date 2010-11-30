@@ -44,8 +44,7 @@
 			</div>
 		</div>
 		
-		<html:form method="POST" action="/mvc/application/provide_degree_discipline" 
-		           enctype="multipart/form-data">
+		<html:form action="/mvc/application/provide_degree_discipline">
 		<div class="node">
 			<div class="title">Enter degree information</div>
 			<table>
