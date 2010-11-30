@@ -236,8 +236,20 @@
 			<forward name="success" 
 			 path="/mvc/chair/disciplines.jsp"/>
 		</action>
+		<action path="/mvc/chair/specializations"
+				type="action.SpecializationAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/specializations.jsp"/>
+		</action>
 		<action path="/mvc/chair/viewdiscipline"
 				type="action.ViewDisciplineAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/applications.jsp"/>
+		</action>
+		<action path="/mvc/chair/viewspecialization"
+				type="action.ViewSpecializationAction"
 				scope="request">
 			<forward name="success" 
 			 path="/mvc/chair/applications.jsp"/>
