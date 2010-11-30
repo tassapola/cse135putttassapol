@@ -31,6 +31,7 @@
 				Graduate Admission System
 			</div>
 		</div>
+		<html:errors/>
 		<%
 			String location = (String) session.getAttribute(Constants.SESS_UNI_LOCATION);
 			String university = (String) session.getAttribute(Constants.SESS_UNIVERSITY);
@@ -43,5 +44,70 @@
 			</div>
 		</div>
 		
+		<html:form method="POST" action="/mvc/application/provide_degree_discipline" 
+		           enctype="multipart/form-data">
+		<div class="node">
+			<div class="title">Enter degree information</div>
+			<table>
+				<tr class="field-container">
+					<td class="label">Discipline: </td>
+					<td class="field">
+						<%
+							LinkedList<String> disciplines =  (LinkedList<String>) request.getAttribute(Constants.LIST_DISCIPLINES);
+							int counter = 0;
+							
+							boolean isFirst = true;
+
+							for (Iterator<String> it = disciplines.iterator(); it.hasNext();) 
+							{
+								String discipline = it.next();
+						%>
+								<html:radio property="discipline" value="<%= discipline %>"/>
+								<%= discipline %><br/>
+						<%  
+								isFirst = false;
+							} 
+						%>
+						<html:radio property="discipline" value="other"/>Other
+						<html:text property="otherDiscipline"/>
+						<br/>
+					</td>
+				</tr>
+				<tr class="field-container">
+					<td class="label">Graduation date (MM/YYYY): </td>
+					<td class="field">
+						<html:text property="degreeMonth" size="2" maxlength="2"/> 
+						<html:text property="degreeYear" size="2" maxlength="4"/> 
+					</td>
+				</tr>
+				<tr class="field-container">
+					<td class="label">GPA:</td>
+					<td class="field">
+					<html:text property="degreeGpa" size="4"/>
+					</td>
+				</tr>
+				<tr class="field-container">
+					<td class="label">Title of Degree:</td>
+					<td class="field">
+						<html:select property="degreeTitle">
+							<html:option value="PhD">PhD</html:option>
+							<html:option value="MS">MS</html:option>
+							<html:option value="BS">BS</html:option>
+						</html:select>
+					</td>
+				</tr>
+				<tr class="field-container">
+					<td class="label">Transcript:</td>
+					<td class="field">
+					<html:file property="transcriptFile"/>
+					</td>
+				</tr>
+			</table>
+
+			<div class="field-container"> 
+				<html:submit value="Submit"/>
+			</div>
+		</div>
+		</html:form>
 	</body>
 </html>
