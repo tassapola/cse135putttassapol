@@ -179,7 +179,7 @@
 				name="EmptyForm"
 				>
 			<forward name="success" redirect="true"
-			 path="/mvc/application/submit_application_successful.jsp"/>
+			 path="/mvc/application/confirmation.jsp"/>
 		</action>
 		
 			 			 
