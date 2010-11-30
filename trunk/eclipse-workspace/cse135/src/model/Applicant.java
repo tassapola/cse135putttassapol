@@ -20,6 +20,7 @@ public class Applicant {
 	private String areacode;
 	private String telephone;
 	Vector<Degree> degreeVector;
+	private String specialization;
 	
 	public Applicant() {
 		degreeVector = new Vector<Degree>();
@@ -172,6 +173,14 @@ public class Applicant {
 
 	public Vector<Degree> getDegreeVector() {
 		return degreeVector;
+	}
+
+	public String getSpecialization() {
+		return specialization;
+	}
+
+	public void setSpecialization(String specialization) {
+		this.specialization = specialization;
 	}
 	
 }

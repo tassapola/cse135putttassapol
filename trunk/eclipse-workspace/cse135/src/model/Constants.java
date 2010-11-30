@@ -7,6 +7,8 @@ public class Constants {
 	public static final String FORWARD_ADDRESS_NON_US = "success.non_us";
 	public static final String FORWARD_MORE_DEGREE_YES = "success.more";
 	public static final String FORWARD_MORE_DEGREE_NO = "success.done";
+	public static final String FORWARD_SUBMIT_APP = "success.submit";
+	public static final String FORWARD_CANCEL = "success.cancel";
 	
 	public static final String LIST_COUNTRIES = "countries";
 	public static final String LIST_UNIVERSITY_STATES = "university_states";
@@ -28,4 +30,7 @@ public class Constants {
 	public static final String LIST_REVIEWERS = "reviewers";
 	public static final String LIST_REVIEWERS_REVIEW = "reviews";
 	public static final String LIST_REVIEWERS_NOT_REVIEW = "notreviews";
+	public static final String LIST_SPECIALIZATIONS = "specializations";
+	
+	public static final String PARAM_SPECIALIZATION = "specialization";
 }
