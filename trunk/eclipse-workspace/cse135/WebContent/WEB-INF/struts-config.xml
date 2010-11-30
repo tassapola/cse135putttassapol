@@ -20,13 +20,18 @@
 				   type="form.ProvideDegreeDiscForm"/>
 		<form-bean name="MergeDegreeForm" 
 				   type="form.MergeDegreeForm"/>
+		<form-bean name="SpecializationForm" 
+				   type="form.SpecializationForm"/>
+		<form-bean name="VerificationForm" 
+				   type="form.VerificationForm"/>
 		<form-bean name="RemoveReviewerForm" 
 				   type="form.RemoveReviewerForm"/>
 		<form-bean name="StartReviewForm" 
 				   type="form.StartReviewForm"/>	
 		<form-bean name="StatusUpdateForm" 
 				   type="form.StatusUpdateForm"/>			   
-
+		<form-bean name="EmptyForm" 
+				   type="form.EmptyForm"/>	
 	</form-beans>
 	<action-mappings>
 		<!-- 1. Applicant/Name -->
@@ -138,8 +143,46 @@
 			<forward name="success.more" redirect="true"
 			 path="/mvc/application/setUniversityLocList.do"/>
 			<forward name="success.done" redirect="true"
-			 path="/mvc/application/specialization.jsp"/> 
+			 path="/mvc/application/setSpecializationList.do"/> 
 		</action>
+		<!-- 10.a. Set specialization list -->
+		<action path="/mvc/application/setSpecializationList"
+				type="action.SetSpecializationListAction"
+				scope="request"
+				>
+			<forward name="success" 
+			 path="/mvc/application/specialization.jsp"/>
+		</action>
+		<!-- 10.b. Specialization (submission)-->
+		<action path="/mvc/application/specialization"
+				type="action.SpecializationAction"
+				scope="request"
+				name="SpecializationForm"
+				>
+			<forward name="success" 
+			 path="/mvc/application/verification.jsp"/>
+		</action>
+		<action path="/mvc/application/verification"
+				type="action.VerificationAction"
+				scope="request"
+				name="VerificationForm"
+				>
+			<forward name="success.submit" redirect="true"
+			 path="/mvc/application/submit_application.do"/>
+			 <forward name="success.cancel" 
+			 path="/mvc/application/cancellation.jsp"/>
+		</action>
+		<!-- 12. Submit application -->
+		<action path="/mvc/application/submit_application"
+				type="action.SubmitAppAction"
+				scope="request"
+				name="EmptyForm"
+				>
+			<forward name="success" redirect="true"
+			 path="/mvc/application/submit_application_successful.jsp"/>
+		</action>
+		
+			 			 
 		<!-- Chair Home -->
 		<action path="/mvc/chair/ChairHome"
 				type="action.ChairHomeAction"
