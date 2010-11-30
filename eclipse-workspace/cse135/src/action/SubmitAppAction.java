@@ -306,6 +306,7 @@ public class SubmitAppAction extends Action {
 				insert_stmt.execute();
 			} 
 			
+			/*
 			ServletOutputStream out = response.getOutputStream();
 			//DEBUG
 			out.println("<b>== insert one degree successful ==</b><br>");
@@ -323,10 +324,12 @@ public class SubmitAppAction extends Action {
 			out.println("applicant_id = " + applicant_id + "<br>");
 			out.println("degree_id = " + degree_id + "<br>");
 			out.println("<br>");
+			*/
 		 }
 		 //Commit the transaction after all degrees are inserted
 		conn.commit();
 		
+		//System.out.println("applicant_id = " + applicant_id);
 		request.setAttribute(Constants.PARAM_APPLICANT_ID, applicant_id);
 		return mapping.findForward(Constants.FORWARD_SUCCESS);
 	}

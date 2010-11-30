@@ -9,7 +9,7 @@ import form.NameForm;
 import form.ResidencyForm;
 import form.SpecializationForm;
 
-public class SpecializationAction extends Action {
+public class AppSpecializationAction extends Action {
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 								 HttpServletRequest request,

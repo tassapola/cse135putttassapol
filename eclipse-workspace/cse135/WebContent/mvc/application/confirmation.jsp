@@ -1,3 +1,4 @@
+<%@ page language="java" import="java.sql.*, java.util.*, model.*" %>
 <html>
 	<head>
 	<% session.invalidate(); %>
@@ -24,7 +25,7 @@
 		<form action="collect_session.jsp" method="GET">
 			<div class="node">
 				<div class="title">Your application is submitted </div>
-				<div class="info" style="font-size:150%;text-align:center;margin:30px;">Your application ID is <%= request.getParameter("applicant_id") %></div>
+				<div class="info" style="font-size:150%;text-align:center;margin:30px;">Your application ID is <%= request.getAttribute(Constants.PARAM_APPLICANT_ID) %></div>
 				<div class="info">Please close this window to end application process.</div>
 			</div>
 		</form>
