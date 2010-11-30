@@ -18,6 +18,8 @@
 				   type="form.ProvideDegreeUniForm"/>
 		<form-bean name="ProvideDegreeDiscForm" 
 				   type="form.ProvideDegreeDiscForm"/>
+		<form-bean name="MergeDegreeForm" 
+				   type="form.MergeDegreeForm"/>
 		<form-bean name="RemoveReviewerForm" 
 				   type="form.RemoveReviewerForm"/>
 		<form-bean name="StartReviewForm" 
@@ -123,7 +125,18 @@
 				input="/mvc/application/provide_degree_discipline.jsp"
 				name="ProvideDegreeDiscForm">
 			<forward name="success" redirect="true"
-			 path="/mvc/application/merge_degree_info.do"/>
+			 path="/mvc/application/more_degree.jsp"/>
+		</action>
+		<!-- 9. Merge Degree -->
+		<action path="/mvc/application/merge_degree"
+				type="action.MergeDegreeAction"
+				scope="request"
+				name="MergeDegreeForm"
+				>
+			<forward name="success.more" redirect="true"
+			 path="/mvc/application/setUniversityLocList.do"/>
+			<forward name="success.done" redirect="true"
+			 path="/mvc/application/specialization.jsp"/> 
 		</action>
 		<!-- Chair Home -->
 		<action path="/mvc/chair/ChairHome"

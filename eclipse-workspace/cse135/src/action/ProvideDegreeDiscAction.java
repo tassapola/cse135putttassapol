@@ -25,6 +25,14 @@ public class ProvideDegreeDiscAction extends Action {
 		System.out.println("degreeGpa = " + f.getDegreeGpa());
 		System.out.println("degreeTitle = " + f.getDegreeTitle());
 		System.out.println("transcriptFile = " + f.getTranscriptFile());
+		HttpSession s = request.getSession();
+		s.setAttribute(Constants.SESS_DISCIPLINE, f.getDiscipline());
+		s.setAttribute(Constants.SESS_OTHER_DISCIPLINE, f.getOtherDiscipline());
+		s.setAttribute(Constants.SESS_DEG_MONTH, f.getDegreeMonth());
+		s.setAttribute(Constants.SESS_DEG_YEAR, f.getDegreeYear());
+		s.setAttribute(Constants.SESS_DEG_GPA, f.getDegreeGpa());
+		s.setAttribute(Constants.SESS_DEG_TITLE, f.getDegreeTitle());
+		s.setAttribute(Constants.SESS_DEG_TRANSCRIPT, f.getTranscriptFile());
 		return mapping.findForward(Constants.FORWARD_SUCCESS);
 	}
 }
