@@ -23,7 +23,7 @@
 		</div>
 		<form action="collect_session.jsp" method="GET">
 			<div class="node">
-				<div class="title">Your application is cancled</div>
+				<div class="title">Your application is canceled.</div>
 				<div class="info">Please close this window.</div>
 			</div>
 		</form>
