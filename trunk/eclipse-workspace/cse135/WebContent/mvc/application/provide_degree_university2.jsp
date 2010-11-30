@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<%
-			String location = (String)request.getAttribute(Constants.PARAM_UNI_LOCATION);
+			String location = (String)session.getAttribute(Constants.SESS_UNI_LOCATION);
 		%>
 		<div class="node">
 			<div class="title">Degree</div>
@@ -50,12 +50,14 @@
 					if (counter % 3 == 0) out.println("<tr>");
 			%>
 					<td>
-					<html:form>
-					  
-					<html:link property="university" action="/mvc/application/provide_degree_university.do">
+				  
+					<html:link action="/mvc/application/provide_degree_university.do">
+					  <html:param name="university">
+					  	<%= university %>
+					  </html:param>
 					  <%= university %>
 					</html:link>
-					</html:form>
+
 					</td> 
 			<%  
 					if (counter % 3 == 2) out.println("</tr>");
