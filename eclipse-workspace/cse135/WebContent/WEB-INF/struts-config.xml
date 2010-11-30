@@ -144,7 +144,7 @@
 				scope="request"
 				>
 			<forward name="case1" path="/mvc/chair/prereview.jsp"/>
-			<forward name="case2" path="/mvc/application/name.jsp"/>
+			<forward name="case2" path="/mvc/chair/review.jsp"/>
 		</action>
 		<action path="/mvc/chair/addreviewer"
 				type="action.AddReviewerAction"
@@ -172,6 +172,18 @@
 				name="StartReviewForm">
 			<forward name="success" redirect="true"
 			 path="/mvc/chair/ChairHome.do"/>
+		</action>
+		<action path="/mvc/chair/reviewers"
+				type="action.ReviewersAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/reviewers.jsp"/>
+		</action>
+		<action path="/mvc/chair/applications"
+				type="action.ApplicationAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/applications.jsp"/>
 		</action>
 	</action-mappings>
 	<message-resources parameter="MessageResources" />
