@@ -187,6 +187,18 @@
 			<forward name="success" 
 			 path="/mvc/chair/applications.jsp"/>
 		</action>
+		<action path="/mvc/chair/disciplines"
+				type="action.DisciplineAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/disciplines.jsp"/>
+		</action>
+		<action path="/mvc/chair/viewdiscipline"
+				type="action.ViewDisciplineAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/applications.jsp"/>
+		</action>
 		<action path="/mvc/chair/changestatus"
 				type="action.ChangeStatusAction"
 				scope="request"

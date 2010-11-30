@@ -25,7 +25,7 @@
 		</div>
 		<div class="node">
 			<logic:notPresent name="reviewer">
-				<div class="title">Applications by Reviewer</div>
+				<div class="title">Applications</div>
 			</logic:notPresent>
 			<logic:present name="reviewer">
 				<div class="title">Applications by <%= request.getAttribute("reviewer") %></div>
@@ -34,14 +34,17 @@
 				<%
 					ArrayList<String> f = (ArrayList<String>)request.getAttribute("firstname");
 					ArrayList<String> l = (ArrayList<String>)request.getAttribute("lastname");
+					ArrayList<String> m = (ArrayList<String>)request.getAttribute("middlename");
 					ArrayList<Double> g = (ArrayList<Double>)request.getAttribute("grade");
 					ArrayList<String> s = (ArrayList<String>)request.getAttribute("status");
 					ArrayList<Integer> id = (ArrayList<Integer>)request.getAttribute("id");
 				%>
 					<table>
 					<tr>
+						<th>No.</th>
 						<th>First name</th>
 						<th>Last name</th>
+						<th>Middle name</th>
 						<th>Grade</th>
 						<th>Status</th>
 					</tr>
@@ -49,8 +52,10 @@
 						for (int i = 0; i < f.size(); i++) {							
 					%>
 						<tr>
+							<td><%= id.get(i) %></td>
 							<td><%= f.get(i) %></td> 
 							<td><%= l.get(i) %></td>
+							<td><%= m.get(i) %></td>
 							<td><%= g.get(i) %></td>
 							<td><%= s.get(i) %></td>
 							<logic:notPresent name="reviewer">
