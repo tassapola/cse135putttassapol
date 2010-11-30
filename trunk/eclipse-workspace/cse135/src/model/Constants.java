@@ -14,7 +14,6 @@ public class Constants {
 	public static final String LIST_UNIVERSITIES = "universities";
 	public static final String PARAM_UNI_LOCATION = "location";
 	public static final String PARAM_UNIVERSITY = "university";
-	public static final String LIST_REVIEWERS = "reviewers";
 	public static final String SESS_UNI_LOCATION = "location";
 	public static final String SESS_UNIVERSITY = "university";
 	public static final String SESS_DISCIPLINE = "discipline";
@@ -25,5 +24,8 @@ public class Constants {
 	public static final String SESS_DEG_TITLE = "degree_title";
 	public static final String SESS_DEG_TRANSCRIPT = "transcript";
 	public static final String LIST_DISCIPLINES = "disciplines";
-
+	
+	public static final String LIST_REVIEWERS = "reviewers";
+	public static final String LIST_REVIEWERS_REVIEW = "reviews";
+	public static final String LIST_REVIEWERS_NOT_REVIEW = "notreviews";
 }
