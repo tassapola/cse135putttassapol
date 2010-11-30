@@ -33,4 +33,5 @@ public class Constants {
 	public static final String LIST_SPECIALIZATIONS = "specializations";
 	
 	public static final String PARAM_SPECIALIZATION = "specialization";
+	public static final String PARAM_APPLICANT_ID = "applicant_id";
 }
