@@ -15,5 +15,6 @@ public class Constants {
 	public static final String LIST_REVIEWERS = "reviewers";
 	public static final String SESS_UNI_LOCATION = "location";
 	public static final String SESS_UNIVERSITY = "university";
+	public static final String LIST_DISCIPLINES = "disciplines";
 
 }
