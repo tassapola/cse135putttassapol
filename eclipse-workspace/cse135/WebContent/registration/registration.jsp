@@ -157,7 +157,7 @@
                     This e-mail address is already registered with the system. You can proceed to submit the application.
                 </div>
                 <div class="field-container">
-                    <form action="/cse135/application/name.jsp" method="GET">
+                    <form action="/cse135/mvc/application/name.jsp" method="GET">
                         <input type="submit" name="proceed" value="Proceed"/> 
                     </form>
                 </div>

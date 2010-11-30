@@ -28,5 +28,57 @@
   	<servlet-name>action</servlet-name>
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <security-constraint>
+    <web-resource-collection>
+	  <web-resource-name>Chair</web-resource-name>
+	  <url-pattern>/mvc/chair/*</url-pattern>
+	</web-resource-collection>
+	<auth-constraint>
+	  <role-name>chair</role-name>
+	</auth-constraint>
+	<user-data-constraint>
+	  <transport-guarantee>NONE</transport-guarantee>
+	</user-data-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+    <web-resource-collection>
+	  <web-resource-name>Applicant</web-resource-name>
+	  <url-pattern>/mvc/application/*</url-pattern>
+	</web-resource-collection>
+	<auth-constraint>
+	  <role-name>applicant</role-name>
+	</auth-constraint>
+	<user-data-constraint>
+	  <transport-guarantee>NONE</transport-guarantee>
+	</user-data-constraint>
+  </security-constraint>
+  
+  <security-role>
+    <role-name>chair</role-name>
+  </security-role>
+  <security-role>
+    <role-name>applicant</role-name>
+  </security-role>
+  <security-role>
+    <role-name>reviewer</role-name>
+  </security-role>
+  
+
+  <resource-ref>
+    <description>postgreSQL Datasource example</description>
+    <res-ref-name>jdbc/postgres</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+
+  <login-config>
+    <auth-method>FORM</auth-method>
+	<form-login-config>
+	  <form-login-page>/login.jsp</form-login-page>
+	  <form-error-page>/login-error.jsp</form-error-page>
+	</form-login-config>
+  </login-config>
 </web-app>
 
