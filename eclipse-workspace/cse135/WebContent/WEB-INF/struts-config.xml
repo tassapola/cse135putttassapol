@@ -112,6 +112,14 @@
 			<forward name="success" redirect="true"
 			 path="/mvc/chair/ChairHome.do"/>
 		</action>
+		<action path="/mvc/chair/startreview"
+				type="action.StartReviewAction"
+				scope="request"
+				input="/mvc/chair/ChairHome.do"
+				>
+			<forward name="success" redirect="true"
+			 path="/mvc/chair/ChairHome.do"/>
+		</action>
 	</action-mappings>
 	<message-resources parameter="MessageResources" />
 </struts-config>

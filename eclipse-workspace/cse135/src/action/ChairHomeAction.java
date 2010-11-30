@@ -20,6 +20,11 @@ public class ChairHomeAction extends Action
 		Class.forName("org.postgresql.Driver");
 		Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/cse135?user=postgres&password=password");
 		Statement stmt = con.createStatement();
+		ResultSet count = stmt.executeQuery("SELECT COUNT(*) FROM applicant WHERE status IS NOT NULL");
+		count.next();
+		isReviewStarted = (count.getInt(1) > 0);
+		count.close();
+		
 		ResultSet users = stmt.executeQuery("SELECT id,user_name FROM user_roles WHERE role='reviewer'");
 		LinkedList<String> l  = new LinkedList<String>();
 		while(users.next()) {

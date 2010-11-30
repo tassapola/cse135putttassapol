@@ -45,7 +45,8 @@ create table applicant (
 	residence	integer references countries (ID) NOT NULL,
 	specialization	integer references specializations (ID) NOT NULL,
 	address		integer references address (ID) NOT NULL,
-	residency	boolean
+	residency	boolean,
+	status	varchar(10)
 );
 
 create table degree (
@@ -77,3 +78,10 @@ create table user_roles (
 	role	text
 );
 
+create table review_result (
+	ID	serial primary key,
+	applicant	integer references applicant (ID) NOT NULL,
+	reviewer	integer references user_roles (ID) NOT NULL,
+	grade		integer,
+	comments	text
+);
