@@ -32,8 +32,13 @@ public class ProvideDegreeLocAction extends Action {
 		}
 		stmt.close();
 		request.setAttribute(Constants.LIST_UNIVERSITIES, l);
-		request.setAttribute(Constants.PARAM_UNI_LOCATION, request.getParameter(Constants.PARAM_UNI_LOCATION));
-		System.out.println("list universities size = " + l.size());
+		request.getSession().setAttribute(Constants.SESS_UNI_LOCATION, ((ProvideDegreeLocForm) form).getLocation());
+		//System.out.println("list universities size = " + l.size());
+		//null
+		//System.out.println("request: param val = " + request.getParameter(Constants.PARAM_UNIVERSITY));
+		
+		//has value
+		//System.out.println("form: val = " + ((ProvideDegreeLocForm) form).getLocation());
 		return mapping.findForward(Constants.FORWARD_SUCCESS);
 	}
 }

@@ -14,6 +14,8 @@
 				   type="form.AddReviewerForm"/>
 		<form-bean name="ProvideDegreeLocForm" 
 				   type="form.ProvideDegreeLocForm"/>
+		<form-bean name="ProvideDegreeUniForm" 
+				   type="form.ProvideDegreeUniForm"/>
 		<form-bean name="StartReviewForm" 
 				   type="form.StartReviewForm"/>				   
 
@@ -98,13 +100,13 @@
 				name="ProvideDegreeLocForm"
 				>
 			<forward name="success" 
-			 path="/mvc/application/provide_degree_university.jsp"/>
+			 path="/mvc/application/provide_degree_university2.jsp"/>
 		</action>
 		<!-- 7. Degree university -->
 		<action path="/mvc/application/provide_degree_university"
 				type="action.ProvideDegreeUniAction"
 				scope="request"
-				
+				name="ProvideDegreeUniForm"
 				>
 			<forward name="success" 
 			 path="/mvc/application/provide_degree_discipline.jsp"/>
