@@ -11,27 +11,30 @@ import javax.servlet.http.*;
 import org.apache.struts.action.*;
 import model.*;
 
-import form.RemoveReviewerForm;
+import form.StatusUpdateForm;
 
-public class RemoveReviewerAction extends Action 
+public class ChangeStatusAction extends Action 
 {
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 								 HttpServletRequest request,
 								 HttpServletResponse response) throws Exception 
     {
-		RemoveReviewerForm reviewerForm = (RemoveReviewerForm)form;
+		StatusUpdateForm statusForm = (StatusUpdateForm)form;
 		
 		Class.forName("org.postgresql.Driver");
 		Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/cse135?user=postgres&password=password");
 		con.setAutoCommit(false);
 		PreparedStatement stmt = con.prepareStatement("");
 		
-		stmt = con.prepareStatement("DELETE FROM user_roles WHERE user_name=?");
-        stmt.setString(1, reviewerForm.getId());
-        stmt.execute();
+		String status = statusForm.getStatus();
 		
-		stmt = con.prepareStatement("DELETE FROM users WHERE user_name=?");
-        stmt.setString(1, reviewerForm.getId());
+		if(status.equalsIgnoreCase("admit")) status = "admitted";
+		else if(status.equalsIgnoreCase("reject")) status = "rejected";
+		else if(status.equalsIgnoreCase("Cancel Decision")) status = "pending";
+		
+		stmt = con.prepareStatement("UPDATE applicant SET status=? WHERE id=?");
+        stmt.setString(1, status);
+        stmt.setInt(2, statusForm.getId());
         stmt.execute();
         
         con.commit();
