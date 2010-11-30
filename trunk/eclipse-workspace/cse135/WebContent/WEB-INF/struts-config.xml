@@ -23,7 +23,9 @@
 		<form-bean name="RemoveReviewerForm" 
 				   type="form.RemoveReviewerForm"/>
 		<form-bean name="StartReviewForm" 
-				   type="form.StartReviewForm"/>				   
+				   type="form.StartReviewForm"/>	
+		<form-bean name="StatusUpdateForm" 
+				   type="form.StatusUpdateForm"/>			   
 
 	</form-beans>
 	<action-mappings>
@@ -184,6 +186,14 @@
 				scope="request">
 			<forward name="success" 
 			 path="/mvc/chair/applications.jsp"/>
+		</action>
+		<action path="/mvc/chair/changestatus"
+				type="action.ChangeStatusAction"
+				scope="request"
+				input="/mvc/chair/applications.do"
+				name="StatusUpdateForm">
+			<forward name="success" redirect="true"
+			 path="/mvc/chair/applications.do"/>
 		</action>
 	</action-mappings>
 	<message-resources parameter="MessageResources" />

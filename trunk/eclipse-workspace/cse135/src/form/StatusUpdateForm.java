@@ -3,18 +3,27 @@ package form;
 import javax.servlet.http.*;
 import org.apache.struts.action.*;
 
-public class RemoveReviewerForm extends ActionForm {
+public class StatusUpdateForm extends ActionForm {
 
-	private String username = null;
+	private int id = 0;
+	private String status = null;
 		
-	public String getId() {
-		return username;
+	public int getId() {
+		return id;
+	}
+	
+	public String getStatus() {
+		return status;
 	}
 
-	public void setId(String username) {
-		this.username = username;
+	public void setId(int id) {
+		this.id = id;
 	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	public ActionErrors validate(ActionMapping mappping,
 								 HttpServletRequest request
 								) 
@@ -24,6 +33,7 @@ public class RemoveReviewerForm extends ActionForm {
 	}
 	
 	public void reset(ActionMapping mapping, HttpServletRequest request) {
-		setId(null);
+		setId(0);
+		setStatus(null);
 	}
 }

@@ -36,6 +36,7 @@
 					ArrayList<String> l = (ArrayList<String>)request.getAttribute("lastname");
 					ArrayList<Double> g = (ArrayList<Double>)request.getAttribute("grade");
 					ArrayList<String> s = (ArrayList<String>)request.getAttribute("status");
+					ArrayList<Integer> id = (ArrayList<Integer>)request.getAttribute("id");
 				%>
 					<table>
 					<tr>
@@ -53,21 +54,24 @@
 							<td><%= g.get(i) %></td>
 							<td><%= s.get(i) %></td>
 							<logic:notPresent name="reviewer">
-								<% if (!s.get(i).equalsIgnoreCase("Admitted")){ %>
-								<td>
-									<html:submit>Admit</html:submit>
-								</td>
-								<%} %>
-								<% if (!s.get(i).equalsIgnoreCase("Rejected")){ %>
-								<td>
-									<html:submit>Reject</html:submit>
-								</td>
-								<%} %>
-								<% if (!s.get(i).equalsIgnoreCase("Pending")){ %>
-								<td>
-									<html:submit>Cancel Decision</html:submit>
-								</td>
-								<%} %>
+								<html:form action="/mvc/chair/changestatus">
+									<html:hidden property="id" value="<%= id.get(i).toString()%>"/>
+									<% if (!s.get(i).equalsIgnoreCase("Admitted")){ %>
+									<td>
+										<html:submit property="status">Admit</html:submit>
+									</td>
+									<%} %>
+									<% if (!s.get(i).equalsIgnoreCase("Rejected")){ %>
+									<td>
+										<html:submit property="status">Reject</html:submit>
+									</td>
+									<%} %>
+									<% if (!s.get(i).equalsIgnoreCase("Pending")){ %>
+									<td>
+										<html:submit property="status">Cancel Decision</html:submit>
+									</td>
+									<%} %>
+								</html:form>
 							</logic:notPresent>
 						</tr> 
 					<%  

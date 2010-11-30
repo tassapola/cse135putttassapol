@@ -25,7 +25,7 @@ public class ApplicationAction extends Action
 		{
 			if (reviewed.equals("true"))
 				applications = con.prepareStatement("" +
-						" SELECT a.first_name, a.last_name, r.grade, a.status  " +
+						" SELECT a.first_name, a.last_name, r.grade, a.status, a.id  " +
 						" FROM user_roles as u, review_result as r, applicant as a" +
 						" WHERE u.user_name=?" +
 						" AND u.id=r.reviewer" +
@@ -33,7 +33,7 @@ public class ApplicationAction extends Action
 						" AND r.grade IS NOT NULL");
 			else
 				applications = con.prepareStatement("" +
-						" SELECT a.first_name, a.last_name, r.grade, a.status  " +
+						" SELECT a.first_name, a.last_name, r.grade, a.status, a.id  " +
 						" FROM user_roles as u, review_result as r, applicant as a" +
 						" WHERE u.user_name=?" +
 						" AND u.id=r.reviewer" +
@@ -45,13 +45,13 @@ public class ApplicationAction extends Action
 		else
 		{
 			applications = con.prepareStatement("" +
-					" SELECT a.first_name, a.last_name, AVG(r.grade), a.status  " +
+					" SELECT a.first_name, a.last_name, AVG(r.grade), a.status, a.id  " +
 					" FROM user_roles as u, review_result as r, applicant as a" +
 					" WHERE u.role='reviewer'" +
 					" AND u.id=r.reviewer" +
 					" AND a.id=r.applicant" +
 					" AND r.grade IS NOT NULL" +
-					" GROUP BY a.first_name, a.last_name, a.status");
+					" GROUP BY a.first_name, a.last_name, a.status, a.id");
 		}
 		
 		ResultSet a = applications.executeQuery();
@@ -59,18 +59,21 @@ public class ApplicationAction extends Action
 		ArrayList<String> l = new ArrayList<String>();
 		ArrayList<Double> g = new ArrayList<Double>();
 		ArrayList<String> s = new ArrayList<String>();
+		ArrayList<Integer> id = new ArrayList<Integer>();
 		while(a.next())
 		{
 			f.add(a.getString(1));
 			l.add(a.getString(2));
 			g.add(a.getDouble(3));
 			s.add(a.getString(4));
+			id.add(a.getInt(5));
 		}
 		
 		request.setAttribute("firstname", f);
 		request.setAttribute("lastname", l);
 		request.setAttribute("grade", g);
 		request.setAttribute("status", s);
+		request.setAttribute("id", id);
 		request.setAttribute("reviewer", reviewer);
 		
 		return mapping.findForward(Constants.FORWARD_SUCCESS);
