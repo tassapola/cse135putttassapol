@@ -12,6 +12,8 @@
 				   type="form.ResidencyForm"/>
 		<form-bean name="AddReviewerForm" 
 				   type="form.AddReviewerForm"/>
+		<form-bean name="StartReviewForm" 
+				   type="form.StartReviewForm"/>				   
 	</form-beans>
 	<action-mappings>
 		<!-- 1. Applicant/Name -->
@@ -115,8 +117,9 @@
 		<action path="/mvc/chair/startreview"
 				type="action.StartReviewAction"
 				scope="request"
+				validate="true"
 				input="/mvc/chair/ChairHome.do"
-				>
+				name="StartReviewForm">
 			<forward name="success" redirect="true"
 			 path="/mvc/chair/ChairHome.do"/>
 		</action>
