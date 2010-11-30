@@ -32,6 +32,8 @@
 				   type="form.StatusUpdateForm"/>			   
 		<form-bean name="EmptyForm" 
 				   type="form.EmptyForm"/>	
+		<form-bean name="ReviewForm" 
+				   type="form.ReviewForm"/>
 	</form-beans>
 	<action-mappings>
 		<!-- 1. Applicant/Name -->
@@ -191,7 +193,7 @@
 		</action>
 		
 			 			 
-		<!-- Chair Home -->
+		<!-- Chair -->
 		<action path="/mvc/chair/ChairHome"
 				type="action.ChairHomeAction"
 				scope="request"
@@ -269,6 +271,29 @@
 				name="StatusUpdateForm">
 			<forward name="success" redirect="true"
 			 path="/mvc/chair/applications.do"/>
+		</action>
+		
+		<!-- Reviewer -->
+		<action path="/mvc/reviewer/reviewersHome"
+				type="action.ReviewerHomeAction"
+				scope="request"
+				>
+			<forward name="success" path="/mvc/reviewer/reviewerhome.jsp"/>
+		</action>
+		<action path="/mvc/reviewer/application"
+				type="action.ApplicationReviewAction"
+				scope="request"
+				>
+			<forward name="success" path="/mvc/reviewer/review.jsp"/>
+		</action>
+		<action path="/mvc/reviewer/commitreview"
+				type="action.CommitReviewAction"
+				validate="true"
+				scope="request"
+				input="/mvc/reviewer/application.do"
+				name="ReviewForm">
+			<forward name="success" redirect="true"
+			 path="/mvc/reviewer/reviewersHome.do"/>
 		</action>
 	</action-mappings>
 	<message-resources parameter="MessageResources" />
