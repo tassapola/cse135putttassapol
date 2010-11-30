@@ -33,7 +33,7 @@ public class ProvideDegreeUniAction extends Action {
 			l.add(discipline);
 		}
 		stmt.close();
-		System.out.println("disciplines list size = " + l.size());
+		//System.out.println("disciplines list size = " + l.size());
 		request.setAttribute(Constants.LIST_DISCIPLINES, l);
 		return mapping.findForward(Constants.FORWARD_SUCCESS);
 	}
