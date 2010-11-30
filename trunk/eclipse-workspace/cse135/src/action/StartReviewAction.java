@@ -24,13 +24,6 @@ public class StartReviewAction extends Action {
 		Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/cse135?user=postgres&password=password");
 		con.setAutoCommit(false);
 		Statement stmt = con.createStatement();
-		ResultSet count = stmt.executeQuery("SELECT COUNT(*) FROM user_roles WHERE role='reviewer'");
-		count.next();
-		canReviewStart = (count.getInt(1) >= 2);
-		count.close();
-		
-		if(!canReviewStart)
-			throw new Exception("Need at least 2 reviewers");
 		
 		stmt.execute("UPDATE applicant SET status='pending' WHERE status IS NULL");
 		con.commit();
