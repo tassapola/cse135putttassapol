@@ -26,7 +26,7 @@
 			<html:errors/>
 			<div class="title">Review</div>
 			<div class="info">
-				<html:link action="/mvc/chair/addreviewer">Start Review Process</html:link>
+				<html:link action="/mvc/chair/startreview">Start Review Process</html:link>
 			</div>
 			<br/>
 			<div class="title">Add Reviewer</div>
