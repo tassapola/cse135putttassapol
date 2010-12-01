@@ -129,21 +129,37 @@ public class SubmitAppAction extends Action {
 		resultSet.close();
 		//End Specialization
 		
+		//get user_id (link to users table)
+		stmt = conn.prepareStatement("SELECT id FROM users WHERE user_name = ?");
+		stmt.setString(1, request.getRemoteUser());
+		resultSet = stmt.executeQuery();
+		int user_id = 0;
+		if(resultSet.next())
+		{
+			//Addess exists in database
+			user_id = resultSet.getInt("id");
+		}
+		else
+		{
+			throw new Exception("user " + request.getRemoteUser() + " is not found in users table");
+		}
+		resultSet.close();
+		//end get user_id
+		
 		//Create applicant entry
-		PreparedStatement insert_stmt = conn.prepareStatement("INSERT INTO applicant (first_name, last_name, middle_name, citizenship, residence, specialization, address, residency) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+		PreparedStatement insert_stmt = conn.prepareStatement("INSERT INTO applicant (first_name, last_name, middle_name, citizenship, residence, specialization, address, residency, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		insert_stmt.setString(1, a.getFirstName());
 		insert_stmt.setString(2, a.getLastName());
 		insert_stmt.setString(3, a.getMiddleName());
 		insert_stmt.setInt(4,  citizenship_id);
 		insert_stmt.setInt(5,  residence_id);
 		insert_stmt.setInt(6,  specialization_id);
-		insert_stmt.setInt(7,  address_id);
-		
+		insert_stmt.setInt(7,  address_id);		
 		if(a.getCitizenship().equals("United States") ||a.getResidence().equals("US Permanent Resident"))
 			insert_stmt.setBoolean(8,  true);
 		else
 			insert_stmt.setBoolean(8,  false);
-		
+		insert_stmt.setInt(9,  user_id);
 		insert_stmt.execute();
 		conn.commit();
 		

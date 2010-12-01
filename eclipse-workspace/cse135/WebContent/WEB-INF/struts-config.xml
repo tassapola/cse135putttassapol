@@ -38,6 +38,24 @@
 				   type="form.SelectReviewerForm"/>				   
 	</form-beans>
 	<action-mappings>
+		<!-- 0.a. My application -->
+		<action path="/mvc/application/myApplication"
+				type="action.MyApplicationAction"
+				scope="request"
+		>
+			<forward name="success.submitted" redirect="true"
+			 path="/mvc/application/showApplicationStatus.do"/>
+			<forward name="success.not_submitted" redirect="true"
+			 path="/mvc/application/name.jsp"/>
+		</action>
+		<!-- 0.b. Show application status -->
+		<action path="/mvc/application/showApplicationStatus"
+				type="action.ShowApplicationStatusAction"
+				scope="request"
+		>
+			<forward name="success" 
+			 path="/mvc/application/show_application_status.jsp"/>
+		</action>
 		<!-- 1. Applicant/Name -->
 		<action path="/mvc/application/name"
 				type="action.NameAction"
