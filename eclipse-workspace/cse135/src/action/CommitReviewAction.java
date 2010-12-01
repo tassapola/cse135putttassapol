@@ -38,9 +38,29 @@ public class CommitReviewAction extends Action
 		stmt.execute();
 		
         con.commit();
+        
+        stmt = con.prepareStatement("" +
+        		"SELECT COUNT(*) " +
+        		"FROM review_result " +
+        		"WHERE applicant=? " +
+        		"AND grade IS NOT NULL");
+        
+        stmt.setInt(1, review.getApplicant());
+        
+        ResultSet reviewerCount = stmt.executeQuery();
+        reviewerCount.next();
+        
+        int count = reviewerCount.getInt(1);
+        
 		stmt.close();
 		con.close();
 		
-		return mapping.findForward("success");
+		request.setAttribute("applicant", review.getApplicant());
+		request.setAttribute("reviewer", review.getReviewer());
+		
+		if(count < 3)
+			return mapping.findForward("assign");
+		else
+			return mapping.findForward("decision");
 	}
 }
