@@ -66,5 +66,16 @@ public class Degree {
 		this.transcriptFile = transcriptFile;
 	}
 	
-	
+	public String toString() {
+		String r = "\ndegree\n";
+		r += "\nuniversity = " + university;
+		r += "\ndiscipline = " + discipline;
+		r += "\notherDiscipline = " + otherDiscipline;
+		r += "\ndegreeTitle = " + degreeTitle;
+		r += "\ndegreeMonth = " + degreeMonth;
+		r += "\ndegreeYear = " + degreeYear;
+		r += "\ndegreeGpa = " + degreeGpa;
+		r += "\ntranscriptFile = " + transcriptFile;
+		return r;
+	}
 }

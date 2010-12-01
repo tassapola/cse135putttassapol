@@ -24,7 +24,7 @@
 				<div class="title">Your registration is complete</div>
 				<div class="info">Please proceed to submit application page.</div>
                 <div class="field-container">
-                    <form action="/cse135/application/name.jsp" method="GET">
+                    <form action="/cse135/mvc/application/myApplicaton.do" method="GET">
                         <input type="submit" name="proceed" value="Proceed"/> 
                     </form>
                 </div>

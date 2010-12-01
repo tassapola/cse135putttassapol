@@ -36,4 +36,6 @@ public class Constants {
 	
 	public static final String PARAM_SPECIALIZATION = "specialization";
 	public static final String PARAM_APPLICANT_ID = "applicant_id";
+	
+	public static final String MY_APP = "applicant";
 }
