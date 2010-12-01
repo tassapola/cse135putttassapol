@@ -1,4 +1,11 @@
-﻿create table transcript (
+﻿create table users (
+	ID	serial primary key,
+	user_name   text,
+	password    text,
+	email	    text
+);
+
+create table transcript (
 	ID	serial primary key,
 	name	text,
 	content	bytea
@@ -46,7 +53,8 @@ create table applicant (
 	specialization	integer references specializations (ID) NOT NULL,
 	address		integer references address (ID) NOT NULL,
 	residency	boolean,
-	status	varchar(10)
+	status	varchar(10),
+	user_id		integer references users (ID) NOT NULL
 );
 
 create table degree (
@@ -65,13 +73,6 @@ create table degree_holder (
 	degree	integer references degree (ID) NOT NULL
 );
 
-create table users (
-	ID	serial primary key,
-	user_name   text,
-	password    text,
-	email	    text
-);
-
 create table user_roles (
 	ID	serial primary key,
 	user_name   text,
@@ -85,3 +86,6 @@ create table review_result (
 	grade		integer,
 	comments	text
 );
+
+
+
