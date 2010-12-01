@@ -55,6 +55,19 @@
 	</user-data-constraint>
   </security-constraint>
   
+  <security-constraint>
+    <web-resource-collection>
+	  <web-resource-name>Reviewer</web-resource-name>
+	  <url-pattern>/mvc/reviewer/*</url-pattern>
+	</web-resource-collection>
+	<auth-constraint>
+	  <role-name>reviewer</role-name>
+	</auth-constraint>
+	<user-data-constraint>
+	  <transport-guarantee>NONE</transport-guarantee>
+	</user-data-constraint>
+  </security-constraint>
+  
   <security-role>
     <role-name>chair</role-name>
   </security-role>
