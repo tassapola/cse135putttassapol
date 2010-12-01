@@ -13,10 +13,16 @@ public class ReviewerHomeAction extends Action
 								 HttpServletRequest request,
 								 HttpServletResponse response) throws Exception 
     {
-		int reviewer = 17;
-		
 		Class.forName("org.postgresql.Driver");
 		Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/cse135?user=postgres&password=password");
+		
+		PreparedStatement reviewer_stmt = con.prepareStatement("SELECT id FROM user_roles WHERE user_name=?");
+		reviewer_stmt.setString(1, request.getRemoteUser());
+		
+		ResultSet r = reviewer_stmt.executeQuery();
+		r.next();
+		int reviewer = r.getInt(1);
+		
 		
 		PreparedStatement applications = con.prepareStatement("" +
 				"SELECT a.first_name, a.last_name, a.middle_name, re.grade, a.status, a.id " +
