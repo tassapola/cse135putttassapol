@@ -46,6 +46,11 @@ public class ApplicationReviewAction extends Action
 		request.setAttribute("reviewer", request.getParameter("reviewer"));
 		request.setAttribute("applicant", request.getParameter("applicant"));
 		
+		//add app info
+		Applicant a = new Applicant();
+		a.load(con, applicantId);
+		request.setAttribute(Constants.APP_FOR_REVIEWER, a);
+		//System.out.println(a);
 		return mapping.findForward(Constants.FORWARD_SUCCESS);
 	}
 }

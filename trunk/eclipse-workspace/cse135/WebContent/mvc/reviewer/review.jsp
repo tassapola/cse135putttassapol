@@ -23,6 +23,85 @@
 				Graduate Admission System
 			</div>
 		</div>
+		<%
+		 	Applicant a = (Applicant) request.getAttribute(Constants.APP_FOR_REVIEWER);
+		%>
+		<div class="node">
+		
+			<div class="title">Status: 
+			<%
+				if (a.getStatus() == null) {
+					%> Submitted <%
+				} else {
+					%> <%=a.getStatus()%> <% 
+				}
+			%> </div>
+			<div class="title">Applicant name</div>
+			<div class="info">
+				<span class="topic">First name: </span><%=a.getFirstName()%> <br/>
+				<span class="topic">Last name: </span><%= a.getLastName()%> <br/>
+				<span class="topic">Middle name: </span><%= a.getMiddleName()%> <br/>
+			</div>
+			<div class="title">Citizenship</div>
+			<div class="info">
+				<span class="topic">Country of Citizenship: </span><%= a.getCitizenship()%> <br/>
+				<span class="topic">Country of Residence: </span><%= a.getResidence()%> <br/>
+			</div>
+			<div class="title">Address</div>
+			<div class="info">
+				<span class="topic">Street Address: </span><%= a.getStreet()%> <br/>
+				<span class="topic">City: </span><%= a.getCity() %> <br/>
+				<% 
+				if (a.getResidence().equals("United States"))
+				{
+				%>
+				<span class="topic">State: </span><%= a.getState() %> <br/>
+				<% } %>
+				
+				<span class="topic">Zip code: </span><%= a.getZipcode() %> <br/>
+				<% 
+				if (!a.getResidence().equals("United States")) 
+				{
+				%>
+				<span class="topic">Country code: </span><%= a.getCountrycode() %> <br/>
+				<% } %>
+				<span class="topic">Area code: </span><%= a.getAreacode() %> <br/>
+				<span class="topic">Telephone number: </span><%= a.getTelephone() %> <br/>
+				<% 
+					if(!a.getCitizenship().equals("United States"))
+					{
+				%>
+				<span class="topic">Residency: </span><%= a.getResidency() %> <br/>	
+				<%  } %>
+			</div>
+			<div class="title">Degree</div>
+			<div class="info">
+				<%
+					Vector degreeVector = a.getDegreeVector();
+					
+					for (Enumeration e = degreeVector.elements(); e.hasMoreElements();)
+					{
+						Degree d = (Degree) e.nextElement();
+				%>
+					<span class="topic">Location: </span><%= d.getLocation() %> <br/>
+					<span class="topic">University: </span><%= d.getUniversity() %> <br/>
+					<span class="topic">Discipline: </span><%= d.getDiscipline() %> <%= (d.getDiscipline().equals("other"))? "-" + d.getOtherDiscipline():"" %> <br/>
+					<span class="topic">Degree Title: </span><%= d.getDegreeTitle() %> <br/>
+					<span class="topic">Degree Date: </span><%= d.getDegreeMonth() %> / <%= d.getDegreeYear() %> <br/>
+					<span class="topic">GPA: </span><%= d.getDegreeGpa() %> <br/>
+					<span class="topic">Transcript: </span><%=  d.getTranscriptFile() %> <br/>
+				<%
+				
+					if(e.hasMoreElements()) out.println("<hr/>");
+					}
+				%>
+			</div>
+		</div>
+		<div class="title">Specialization</div>
+			<div class="info">
+				<span class="topic">Specialization: </span><%= a.getSpecialization() %> <br/>
+			</div>
+		
 		<div class="node">
 			<div class="title">Application Reviews</div>
 			<div class="info">

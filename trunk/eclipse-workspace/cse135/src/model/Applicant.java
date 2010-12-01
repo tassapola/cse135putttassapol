@@ -196,9 +196,7 @@ public class Applicant {
 		this.status = status;
 	}
 
-	public void load(Connection con, String username) throws Exception{
-		Statement stmt = con.createStatement();
-		ResultSet app = stmt.executeQuery("select a.* from applicant a, users u where a.user_id = u.id and u.user_name = '" + username + "'");
+	private void processApplicantResultSet(Connection con, ResultSet app) throws Exception {
 		if (app.next()) {
 			int id = app.getInt("id");
 			firstName = app.getString("first_name");
@@ -283,6 +281,20 @@ public class Applicant {
 			
 			stmt2.close();
 		}
+	}
+	
+	public void load(Connection con, String username) throws Exception{
+		Statement stmt = con.createStatement();
+		ResultSet app = stmt.executeQuery("select a.* from applicant a, users u where a.user_id = u.id and u.user_name = '" + username + "'");
+		processApplicantResultSet(con, app);
+		stmt.close();
+	}
+	
+	public void load(Connection con, int id) throws Exception{
+		Statement stmt = con.createStatement();
+		ResultSet app = stmt.executeQuery("select * from applicant a where id = " + id);
+		processApplicantResultSet(con, app);
+		stmt.close();
 	}
 	
 	public String toString() {
