@@ -13,7 +13,7 @@ public class ReviewerHomeAction extends Action
 								 HttpServletRequest request,
 								 HttpServletResponse response) throws Exception 
     {
-		int reviewer = 15;
+		int reviewer = 8;
 		
 		Class.forName("org.postgresql.Driver");
 		Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/cse135?user=postgres&password=password");
