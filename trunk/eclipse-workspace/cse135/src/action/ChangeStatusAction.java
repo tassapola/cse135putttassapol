@@ -30,7 +30,7 @@ public class ChangeStatusAction extends Action
 		
 		if(status.equalsIgnoreCase("admit")) status = "admitted";
 		else if(status.equalsIgnoreCase("reject")) status = "rejected";
-		else if(status.equalsIgnoreCase("Cancel Decision")) status = "pending";
+		else status = "pending";
 		
 		stmt = con.prepareStatement("UPDATE applicant SET status=? WHERE id=?");
         stmt.setString(1, status);

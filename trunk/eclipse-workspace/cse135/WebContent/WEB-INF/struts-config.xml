@@ -295,13 +295,27 @@
 				input="/mvc/reviewer/application.do"
 				name="ReviewForm">
 			<forward name="assign" path="/mvc/reviewer/listReviewer.do"/>
-			<forward name="decide" path="/mvc/reviewer/reviewersHome.do"/>
+			<forward name="decision" path="/mvc/reviewer/decideResult.do"/>
+		</action>
+		<action path="/mvc/reviewer/decideResult"
+				type="action.DecideResultAction"
+				scope="request"
+				>
+			<forward name="success" path="/mvc/reviewer/decision.jsp"/>
 		</action>
 		<action path="/mvc/reviewer/listReviewer"
 				type="action.ListReviewerAction"
 				scope="request"
 				>
 			<forward name="success" path="/mvc/reviewer/list.jsp"/>
+		</action>
+		<action path="/mvc/reviewer/changestatus"
+				type="action.ChangeStatusAction"
+				validate="true"
+				scope="request"
+				input="/mvc/reviewer/changestatus.do"
+				name="StatusUpdateForm">
+			<forward name="success" redirect="true" path="/mvc/reviewer/reviewersHome.do"/>
 		</action>
 		<action path="/mvc/reviewer/assignReviewer"
 				type="action.AssignReviewerAction"
