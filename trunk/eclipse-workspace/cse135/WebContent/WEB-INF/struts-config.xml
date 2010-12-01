@@ -43,8 +43,8 @@
 				type="action.MyApplicationAction"
 				scope="request"
 		>
-			<forward name="success.submitted" redirect="true"
-			 path="/mvc/application/showApplicationStatus.jsp"/>
+			<forward name="success.submitted"
+			 path="/mvc/application/show_application_status.jsp"/>
 			<forward name="success.not_submitted" redirect="true"
 			 path="/mvc/application/name.jsp"/>
 		</action>

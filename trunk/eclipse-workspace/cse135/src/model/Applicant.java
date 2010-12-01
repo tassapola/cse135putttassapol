@@ -1,5 +1,9 @@
 package model;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Vector;
 
 import form.*;
@@ -21,6 +25,7 @@ public class Applicant {
 	private String telephone;
 	Vector<Degree> degreeVector;
 	private String specialization;
+	private String status;
 	
 	public Applicant() {
 		degreeVector = new Vector<Degree>();
@@ -183,4 +188,121 @@ public class Applicant {
 		this.specialization = specialization;
 	}
 	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public void load(Connection con, String username) throws Exception{
+		Statement stmt = con.createStatement();
+		ResultSet app = stmt.executeQuery("select a.* from applicant a, users u where a.user_id = u.id and u.user_name = '" + username + "'");
+		if (app.next()) {
+			int id = app.getInt("id");
+			firstName = app.getString("first_name");
+			lastName = app.getString("last_name");
+			middleName = app.getString("middle_name");
+			status = app.getString("status");
+			
+			Statement stmt2;
+			ResultSet r;
+			Statement stmt3;
+			ResultSet r3;
+			stmt2 = con.createStatement();
+			r = stmt2.executeQuery("select * from countries where id = " + app.getInt("citizenship"));
+			r.next();
+			citizenship = r.getString("name");
+			stmt2.close();
+			
+			stmt2 = con.createStatement();
+			r = stmt2.executeQuery("select * from countries where id = " + app.getInt("residence"));
+			r.next();
+			residence = r.getString("name");
+			isUsResidence = residence.equals("United States");
+			boolean residencyDb = app.getBoolean("residency");
+			if (residencyDb)
+				residency = "US Permanent Resident";
+			else
+				residency = "Non-Resident";
+			stmt2.close();
+			
+			
+			stmt2 = con.createStatement();
+			r = stmt2.executeQuery("select * from specializations where id = " + app.getInt("specialization"));
+			r.next();
+			specialization = r.getString("name");
+			stmt2.close();
+			
+			stmt2 = con.createStatement();
+			r = stmt2.executeQuery("select * from address where id = " + app.getInt("address"));
+			r.next();
+			street = r.getString("street_address");
+			city = r.getString("city");
+			zipcode = r.getString("zip_code");
+			areacode = r.getString("area_code");
+			telephone = r.getString("tel_number");
+			state = r.getString("state");
+			countrycode = r.getString("country_code");
+			
+			stmt2.close();
+			
+			stmt2 = con.createStatement();
+			r = stmt2.executeQuery("select * from degree_holder h, degree d where h.applicant = "
+					+ id + "and h.degree = d.id");
+			while (r.next()) {
+				Degree d = new Degree();
+				stmt3 = con.createStatement();
+				r3 = stmt3.executeQuery("select * from universities where id = " + r.getInt("university"));
+				r3.next();
+				d.setUniversity(r3.getString("name"));
+				d.setLocation(r3.getString("location"));
+				stmt3.close();
+				
+				stmt3 = con.createStatement();
+				r3 = stmt3.executeQuery("select * from disciplines where id = " + r.getInt("discipline"));
+				r3.next();
+				//System.out.println(r3.getString("name"));
+				d.setDiscipline(r3.getString("name"));
+				stmt3.close();
+				
+				stmt3 = con.createStatement();
+				r3 = stmt3.executeQuery("select * from transcript where id = " + r.getInt("transcript"));
+				r3.next();
+				d.setTranscriptFile(r3.getString("name"));
+				stmt3.close();
+				
+				d.setDegreeTitle(r.getString("degree_title"));
+				d.setDegreeGpa(r.getString("gpa"));
+				Date degDate = r.getDate("degree_date");
+				d.setDegreeMonth(Integer.toString(degDate.getMonth()+1));
+				d.setDegreeYear(Integer.toString(degDate.getYear()+1900));
+				degreeVector.add(d);
+			}
+			
+			stmt2.close();
+		}
+	}
+	
+	public String toString() {
+		String r = "";
+		r += "\nfirstName = " + firstName;
+		r += "\nlastName = " + lastName;
+		r += "\nmiddleName = " + middleName;
+		r += "\ncitizenship = " + citizenship;
+		r += "\nresidence = " + residence;
+		r += "\nresidency = " + residency;
+		r += "\nstreet = " + street;
+		r += "\ncity = " + city;
+		r += "\nstate = " + state;
+		r += "\nzipcode = " + zipcode;
+		r += "\ncountrycode = " + countrycode;
+		r += "\nareacode = " + areacode;
+		r += "\ntelephone = " + telephone;
+		r += "\nspecialization = " + specialization;
+		r += "\nstatus = " + status;
+		r += degreeVector;
+		return r;
+	}
 }
