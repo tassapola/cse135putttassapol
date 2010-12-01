@@ -38,4 +38,5 @@ public class Constants {
 	public static final String PARAM_APPLICANT_ID = "applicant_id";
 	
 	public static final String MY_APP = "applicant";
+	public static final String APP_FOR_REVIEWER = "application_for_reviewer";
 }
