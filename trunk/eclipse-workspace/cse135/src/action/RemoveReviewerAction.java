@@ -27,11 +27,11 @@ public class RemoveReviewerAction extends Action
 		PreparedStatement stmt = con.prepareStatement("");
 		
 		stmt = con.prepareStatement("DELETE FROM user_roles WHERE user_name=?");
-        stmt.setString(1, reviewerForm.getId());
+        stmt.setString(1, reviewerForm.getUsername());
         stmt.execute();
 		
 		stmt = con.prepareStatement("DELETE FROM users WHERE user_name=?");
-        stmt.setString(1, reviewerForm.getId());
+        stmt.setString(1, reviewerForm.getUsername());
         stmt.execute();
         
         con.commit();

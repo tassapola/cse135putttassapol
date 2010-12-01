@@ -292,8 +292,22 @@
 				scope="request"
 				input="/mvc/reviewer/application.do"
 				name="ReviewForm">
-			<forward name="success" redirect="true"
-			 path="/mvc/reviewer/reviewersHome.do"/>
+			<forward name="assign" path="/mvc/reviewer/listReviewer.do"/>
+			<forward name="decide" path="/mvc/reviewer/reviewersHome.do"/>
+		</action>
+		<action path="/mvc/reviewer/listReviewer"
+				type="action.ListReviewerAction"
+				scope="request"
+				>
+			<forward name="success" path="/mvc/reviewer/list.jsp"/>
+		</action>
+		<action path="/mvc/reviewer/assignReviewer"
+				type="action.AssignReviewerAction"
+				validate="true"
+				scope="request"
+				input="/mvc/reviewer/application.do"
+				name="ReviewForm">
+			<forward name="success" redirect="true" path="/mvc/reviewer/reviewersHome.do"/>
 		</action>
 	</action-mappings>
 	<message-resources parameter="MessageResources" />
