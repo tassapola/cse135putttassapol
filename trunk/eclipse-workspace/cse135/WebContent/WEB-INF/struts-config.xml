@@ -34,6 +34,8 @@
 				   type="form.EmptyForm"/>	
 		<form-bean name="ReviewForm" 
 				   type="form.ReviewForm"/>
+		<form-bean name="SelectReviewerForm" 
+				   type="form.SelectReviewerForm"/>				   
 	</form-beans>
 	<action-mappings>
 		<!-- 1. Applicant/Name -->
@@ -305,8 +307,8 @@
 				type="action.AssignReviewerAction"
 				validate="true"
 				scope="request"
-				input="/mvc/reviewer/application.do"
-				name="ReviewForm">
+				input="/mvc/reviewer/listReviewer.do"
+				name="SelectReviewerForm">
 			<forward name="success" redirect="true" path="/mvc/reviewer/reviewersHome.do"/>
 		</action>
 	</action-mappings>
