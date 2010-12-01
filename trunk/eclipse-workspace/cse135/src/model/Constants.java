@@ -9,6 +9,8 @@ public class Constants {
 	public static final String FORWARD_MORE_DEGREE_NO = "success.done";
 	public static final String FORWARD_SUBMIT_APP = "success.submit";
 	public static final String FORWARD_CANCEL = "success.cancel";
+	public static final String FORWARD_MY_APP_SUBMITTED = "success.submitted";
+	public static final String FORWARD_MY_APP_NOT_SUBMITTED = "success.not_submitted";
 	
 	public static final String LIST_COUNTRIES = "countries";
 	public static final String LIST_UNIVERSITY_STATES = "university_states";
