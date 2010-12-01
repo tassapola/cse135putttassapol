@@ -9,7 +9,7 @@ Tomcat 7.0
 JRE 6
 Struts 1.3 
 
-File contents
+=File contents=
 1. doc/
      cse135_diagram.pptx      : MVC diagram
 2. tomcat/
@@ -30,11 +30,11 @@ File contents
        classes/               ; classes
          MessageResources.properties   ; error messages
 5. java/
-     action/
-     form/
+     action/		      ; action
+     form/                    ; form
+     model/                   ; model
 
-
-Usage
+=Usage=
 https://localhost:8443/cse135/registration/registration.jsp
 http://localhost:8080/cse135/application/myApplication.do
 https://localhost:8443/cse135/mvc/chair/ChairHome.do
