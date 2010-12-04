@@ -4,18 +4,43 @@
 
 <html>
 	<head>
-	<style>
-		body {margin:auto; width:800px; font-size:10pt; font-family: helvetica,Arial,verdana,sans-serif;color:#000;}
-		table {margin: 10px auto; }
-		.header {font-size:200%; text-align:center; margin:10px 0; padding:10px 0; border-bottom:solid thin #000;}
-		.node {border: solid thin #DDD; margin:10px;}
-		.node .title {font-size:120%; font-weight:bold; margin:5px 20px; border-bottom:solid thin #DDD;}
-		.node .info {text-align:left; margin:5px 70px;}
-		.node .topic {font-weight:bold;}
-		.field-container {font-size:10pt; text-align:center; margin: 5px;}
-		.field-container .label{ text-align: right;}
-		
-	</style>
+		<style>
+			body {margin:auto; width:800px; font-size:10pt; font-family: helvetica,Arial,verdana,sans-serif;color:#000;}
+			table {margin: 10px auto; }
+			.header {font-size:200%; text-align:center; margin:10px 0; padding:10px 0; border-bottom:solid thin #000;}
+			.node {border: solid thin #DDD; margin:10px;}
+			.node .title {font-size:120%; font-weight:bold; margin:5px 20px; border-bottom:solid thin #DDD;}
+			.node .info {text-align:left; margin:5px 70px;}
+			.node .topic {font-weight:bold;}
+			.field-container {font-size:10pt; text-align:center; margin: 5px;}
+			.field-container .label{ text-align: right;}
+			
+		</style>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js" > </script>
+		<script type="text/javascript">
+			function showApplication(id)
+			{
+				if ($("#applicationBtt-"+id).val() == "Show Application")
+				{
+					$("#applicationBtt-"+id).val("Hide Application");
+					$(".appBtt").attr('disabled', true);
+					$("#applicationBtt-"+id).attr('disabled', false);
+					
+					$.ajax({
+						  url: '/cse135/mvc/chair/show_app_info.jsp?id='+id,
+						  success: function(data) {
+						    $('#applicationDiv').html(data);
+						  }
+						});
+				}
+				else
+				{
+					$("#applicationBtt-"+id).val("Show Application");
+					$(".appBtt").attr('disabled', false);
+					$('#applicationDiv').html("");
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<div class="header-container">	
@@ -76,6 +101,9 @@
 										<html:submit property="status">Cancel Decision</html:submit>
 									</td>
 									<%} %>
+									<td>
+										<input type="button" class="appBtt" value="Show Application" id="applicationBtt-<%= id.get(i).toString()%>" onclick='showApplication("<%= id.get(i).toString()%>")'/>
+									</td>
 								</html:form>
 							</logic:notPresent>
 						</tr> 
@@ -84,6 +112,7 @@
 					%>
 					</table>
 			</div>
+			<div class="info" id="applicationDiv"></div>
 		</div>
 	</body>
 </html>
