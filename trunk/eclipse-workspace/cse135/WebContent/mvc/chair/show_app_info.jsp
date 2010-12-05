@@ -19,19 +19,7 @@
 	</head>
 	<body>
 		<%
-		Class.forName("org.postgresql.Driver");
-		Connection con=DriverManager.getConnection("jdbc:postgresql://localhost/cse135?user=postgres&password=password");
-		con.setAutoCommit(false);
-		Statement stmt = con.createStatement();
-		String id = request.getParameter("id");
-		ResultSet app = stmt.executeQuery("select u.user_name \"user\" from applicant a, users u where a.user_id = " + id + " and u.id = a.user_id");
-		Applicant a = null;
-		if (app.next()) {
-			//add app info
-			a = new Applicant();
-			a.load(con, app.getString("user"));
-		}
-		stmt.close();
+		Applicant a = (Applicant) request.getAttribute(Constants.APP_FOR_REVIEWER);
 		%>
 		<div class="node">
 			<div class="title">Applicant name</div>
@@ -99,6 +87,33 @@
 			<div class="info">
 				<span class="topic">Specialization: </span><%= a.getSpecialization() %> <br/>
 			</div>
-		
+		<div class="node">
+			<div class="title">Application Reviews</div>
+			<div class="info">
+				<%
+
+					ArrayList<String> r = (ArrayList<String>)request.getAttribute("reviewers");
+					ArrayList<Double> g = (ArrayList<Double>)request.getAttribute("grade");
+					ArrayList<String> c = (ArrayList<String>)request.getAttribute("comment");
+				%>
+					<table>
+					<tr>
+						<th>Reviewer</th>
+						<th>Grade</th>
+						<th>Comment</th>
+					</tr>
+					<%
+						for (int i = 0; i < r.size(); i++) {							
+					%>
+						<tr>
+							<td><%= r.get(i) %></td>
+							<td><%= g.get(i) %></td>
+							<td><%= c.get(i) %></td>
+						</tr> 
+					<%  
+						} 
+					%>
+					</table>
+			</div>
 	</body>
 </html>
