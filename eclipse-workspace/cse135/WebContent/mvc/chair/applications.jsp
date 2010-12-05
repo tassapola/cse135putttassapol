@@ -27,7 +27,7 @@
 					$("#applicationBtt-"+id).attr('disabled', false);
 					
 					$.ajax({
-						  url: '/cse135/mvc/chair/show_app_info.jsp?id='+id,
+						  url: '/cse135/mvc/chair/viewapplication.do?applicant='+id,
 						  success: function(data) {
 						    $('#applicationDiv').html(data);
 						  }

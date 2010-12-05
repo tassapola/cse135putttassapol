@@ -98,7 +98,7 @@
 				input="/mvc/application/address.jsp"
 				name="AddressForm">
 			<forward name="success.us" redirect="true"
-			 path="/mvc/application/provide_degree_location.jsp"/>
+			 path="/mvc/application/setUniversityLocList.do"/>
 			<forward name="success.non_us" redirect="true"
 			 path="/mvc/application/residency.jsp"/>
 		</action>
@@ -275,6 +275,12 @@
 				scope="request">
 			<forward name="success" 
 			 path="/mvc/chair/applications.jsp"/>
+		</action>
+		<action path="/mvc/chair/viewapplication"
+				type="action.ApplicationReviewAction"
+				scope="request"
+				>
+			<forward name="success" path="/mvc/chair/show_app_info.jsp"/>
 		</action>
 		<action path="/mvc/chair/changestatus"
 				type="action.ChangeStatusAction"
