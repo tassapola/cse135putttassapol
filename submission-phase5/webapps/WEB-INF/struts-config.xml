@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="NameForm" 
+				   type="form.NameForm"/>
+		<form-bean name="AddressForm" 
+				   type="form.AddressForm"/>
+		<form-bean name="ResidencyForm" 
+				   type="form.ResidencyForm"/>
+		<form-bean name="AddReviewerForm" 
+				   type="form.AddReviewerForm"/>
+		<form-bean name="ProvideDegreeLocForm" 
+				   type="form.ProvideDegreeLocForm"/>
+		<form-bean name="ProvideDegreeUniForm" 
+				   type="form.ProvideDegreeUniForm"/>
+		<form-bean name="ProvideDegreeDiscForm" 
+				   type="form.ProvideDegreeDiscForm"/>
+		<form-bean name="MergeDegreeForm" 
+				   type="form.MergeDegreeForm"/>
+		<form-bean name="SpecializationForm" 
+				   type="form.SpecializationForm"/>
+		<form-bean name="VerificationForm" 
+				   type="form.VerificationForm"/>
+		<form-bean name="RemoveReviewerForm" 
+				   type="form.RemoveReviewerForm"/>
+		<form-bean name="StartReviewForm" 
+				   type="form.StartReviewForm"/>	
+		<form-bean name="StatusUpdateForm" 
+				   type="form.StatusUpdateForm"/>			   
+		<form-bean name="EmptyForm" 
+				   type="form.EmptyForm"/>	
+		<form-bean name="ReviewForm" 
+				   type="form.ReviewForm"/>
+		<form-bean name="SelectReviewerForm" 
+				   type="form.SelectReviewerForm"/>				   
+	</form-beans>
+	<action-mappings>
+		<!-- 0. My application -->
+		<action path="/mvc/application/myApplication"
+				type="action.MyApplicationAction"
+				scope="request"
+		>
+			<forward name="success.submitted"
+			 path="/mvc/application/show_application_status.jsp"/>
+			<forward name="success.not_submitted" redirect="true"
+			 path="/mvc/application/name.jsp"/>
+		</action>
+		<!-- 1. Applicant/Name -->
+		<action path="/mvc/application/name"
+				type="action.NameAction"
+				validate="true"
+				scope="request"
+				input="/mvc/application/name.jsp"
+				name="NameForm">
+			<forward name="success" redirect="true"
+			 path="/mvc/application/setCitizenshipList.do"/>
+		</action>
+		<!-- 2.a. Set citizenship list -->
+		<action path="/mvc/application/setCitizenshipList"
+				type="action.SetCitizenshipListAction"
+				scope="request"
+				>
+			<forward name="success" 
+			 path="/mvc/application/citizenship.jsp"/>
+		</action>
+		<!-- 2.b. Citizenship -->
+		<action path="/mvc/application/citizenship"
+				type="action.CitizenshipAction"
+				scope="request"
+				>
+			<forward name="success" 
+			 path="/mvc/application/setResidenceList.do"/>
+		</action>
+		<!-- 3.a. Set residence list -->
+		<action path="/mvc/application/setResidenceList"
+				type="action.SetResidenceListAction"
+				scope="request"
+				>
+			<forward name="success" 
+			 path="/mvc/application/residence.jsp"/>
+		</action>
+		<!-- 3.b. Residence -->
+		<action path="/mvc/application/residence"
+				type="action.ResidenceAction"
+				scope="request"
+				>
+			<forward name="success" 
+			 path="/mvc/application/address.jsp"/>
+		</action>
+		<!-- 4. Address -->
+		<action path="/mvc/application/address"
+				type="action.AddressAction"
+				validate="true"
+				scope="request"
+				input="/mvc/application/address.jsp"
+				name="AddressForm">
+			<forward name="success.us" redirect="true"
+			 path="/mvc/application/setUniversityLocList.do"/>
+			<forward name="success.non_us" redirect="true"
+			 path="/mvc/application/residency.jsp"/>
+		</action>
+		<!-- 5. Residency for non-US-->
+		<action path="/mvc/application/residency"
+				type="action.ResidencyAction"
+				validate="false"
+				scope="request"
+				name="ResidencyForm"
+				>
+			<forward name="success" 
+			 path="/mvc/application/setUniversityLocList.do"/>
+		</action>
+		<!-- 6.a. Set university locations list -->
+		<action path="/mvc/application/setUniversityLocList"
+				type="action.SetUniversityLocListAction"
+				scope="request"
+				>
+			<forward name="success" 
+			 path="/mvc/application/provide_degree_location.jsp"/>
+		</action>
+		<!-- 6.b. Degree locations -->
+		<action path="/mvc/application/provide_degree_location"
+				type="action.ProvideDegreeLocAction"
+				scope="request"
+				name="ProvideDegreeLocForm"
+				>
+			<forward name="success" 
+			 path="/mvc/application/provide_degree_university2.jsp"/>
+		</action>
+		<!-- 7.a. Degree university -->
+		<action path="/mvc/application/provide_degree_university"
+				type="action.ProvideDegreeUniAction"
+				scope="request"
+				name="ProvideDegreeUniForm"
+				>
+			<forward name="success" 
+			 path="/mvc/application/setDisciplineList.do"/>
+		</action>
+		<!-- 8.a. set discipline list-->
+		<action path="/mvc/application/setDisciplineList"
+				type="action.SetDisciplineListAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/application/provide_degree_discipline.jsp"/>
+		</action>
+		<!-- 8.b. Degree disciplines / GPA -->
+		<action path="/mvc/application/provide_degree_discipline"
+				type="action.ProvideDegreeDiscAction"
+				validate="true"
+				scope="request"
+				input="/mvc/application/setDisciplineList.do"
+				name="ProvideDegreeDiscForm">
+			<forward name="success" redirect="true"
+			 path="/mvc/application/more_degree.jsp"/>
+		</action>
+		<!-- 9. Merge Degree -->
+		<action path="/mvc/application/merge_degree"
+				type="action.MergeDegreeAction"
+				scope="request"
+				name="MergeDegreeForm"
+				>
+			<forward name="success.more" redirect="true"
+			 path="/mvc/application/setUniversityLocList.do"/>
+			<forward name="success.done" redirect="true"
+			 path="/mvc/application/setSpecializationList.do"/> 
+		</action>
+		<!-- 10.a. Set specialization list -->
+		<action path="/mvc/application/setSpecializationList"
+				type="action.SetSpecializationListAction"
+				scope="request"
+				>
+			<forward name="success" 
+			 path="/mvc/application/specialization.jsp"/>
+		</action>
+		<!-- 10.b. Specialization (submission)-->
+		<action path="/mvc/application/specialization"
+				type="action.AppSpecializationAction"
+				scope="request"
+				name="SpecializationForm"
+				>
+			<forward name="success" 
+			 path="/mvc/application/verification.jsp"/>
+		</action>
+		<!-- 11. Verification -->
+		<action path="/mvc/application/verification"
+				type="action.VerificationAction"
+				scope="request"
+				name="VerificationForm"
+				>
+			<forward name="success.submit" redirect="true"
+			 path="/mvc/application/submit_application.do"/>
+			 <forward name="success.cancel" 
+			 path="/mvc/application/cancellation.jsp"/>
+		</action>
+		<!-- 12. Submit application -->
+		<action path="/mvc/application/submit_application"
+				type="action.SubmitAppAction"
+				scope="request"
+				name="EmptyForm"
+				>
+			<forward name="success" 
+			 path="/mvc/application/confirmation.jsp"/>
+		</action>
+		
+			 			 
+		<!-- Chair -->
+		<action path="/mvc/chair/ChairHome"
+				type="action.ChairHomeAction"
+				scope="request"
+				>
+			<forward name="case1" path="/mvc/chair/prereview.jsp"/>
+			<forward name="case2" path="/mvc/chair/review.jsp"/>
+		</action>
+		<action path="/mvc/chair/addreviewer"
+				type="action.AddReviewerAction"
+				validate="true"
+				scope="request"
+				input="/mvc/chair/ChairHome.do"
+				name="AddReviewerForm">
+			<forward name="success" redirect="true"
+			 path="/mvc/chair/ChairHome.do"/>
+		</action>
+		<action path="/mvc/chair/removereviewer"
+				type="action.RemoveReviewerAction"
+				validate="true"
+				scope="request"
+				input="/mvc/chair/ChairHome.do"
+				name="RemoveReviewerForm">
+			<forward name="success" redirect="true"
+			 path="/mvc/chair/ChairHome.do"/>
+		</action>
+		<action path="/mvc/chair/startreview"
+				type="action.StartReviewAction"
+				scope="request"
+				validate="true"
+				input="/mvc/chair/ChairHome.do"
+				name="StartReviewForm">
+			<forward name="success" redirect="true"
+			 path="/mvc/chair/ChairHome.do"/>
+		</action>
+		<action path="/mvc/chair/reviewers"
+				type="action.ReviewersAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/reviewers.jsp"/>
+		</action>
+		<action path="/mvc/chair/applications"
+				type="action.ApplicationAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/applications.jsp"/>
+		</action>
+		<action path="/mvc/chair/disciplines"
+				type="action.DisciplineAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/disciplines.jsp"/>
+		</action>
+		<action path="/mvc/chair/specializations"
+				type="action.SpecializationAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/specializations.jsp"/>
+		</action>
+		<action path="/mvc/chair/viewdiscipline"
+				type="action.ViewDisciplineAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/applications.jsp"/>
+		</action>
+		<action path="/mvc/chair/viewspecialization"
+				type="action.ViewSpecializationAction"
+				scope="request">
+			<forward name="success" 
+			 path="/mvc/chair/applications.jsp"/>
+		</action>
+		<action path="/mvc/chair/viewapplication"
+				type="action.ApplicationReviewAction"
+				scope="request"
+				>
+			<forward name="success" path="/mvc/chair/show_app_info.jsp"/>
+		</action>
+		<action path="/mvc/chair/changestatus"
+				type="action.ChangeStatusAction"
+				scope="request"
+				input="/mvc/chair/applications.do"
+				name="StatusUpdateForm">
+			<forward name="success" redirect="true"
+			 path="/mvc/chair/applications.do"/>
+		</action>
+		
+		<!-- Reviewer -->
+		<action path="/mvc/reviewer/reviewersHome"
+				type="action.ReviewerHomeAction"
+				scope="request"
+				>
+			<forward name="success" path="/mvc/reviewer/reviewerhome.jsp"/>
+		</action>
+		<action path="/mvc/reviewer/application"
+				type="action.ApplicationReviewAction"
+				scope="request"
+				>
+			<forward name="success" path="/mvc/reviewer/review.jsp"/>
+		</action>
+		<action path="/mvc/reviewer/commitreview"
+				type="action.CommitReviewAction"
+				validate="true"
+				scope="request"
+				input="/mvc/reviewer/application.do"
+				name="ReviewForm">
+			<forward name="assign" path="/mvc/reviewer/listReviewer.do"/>
+			<forward name="decision" path="/mvc/reviewer/decideResult.do"/>
+		</action>
+		<action path="/mvc/reviewer/decideResult"
+				type="action.DecideResultAction"
+				scope="request"
+				>
+			<forward name="success" path="/mvc/reviewer/decision.jsp"/>
+		</action>
+		<action path="/mvc/reviewer/listReviewer"
+				type="action.ListReviewerAction"
+				scope="request"
+				>
+			<forward name="success" path="/mvc/reviewer/list.jsp"/>
+		</action>
+		<action path="/mvc/reviewer/changestatus"
+				type="action.ChangeStatusAction"
+				validate="true"
+				scope="request"
+				input="/mvc/reviewer/changestatus.do"
+				name="StatusUpdateForm">
+			<forward name="success" redirect="true" path="/mvc/reviewer/reviewersHome.do"/>
+		</action>
+		<action path="/mvc/reviewer/assignReviewer"
+				type="action.AssignReviewerAction"
+				validate="true"
+				scope="request"
+				input="/mvc/reviewer/listReviewer.do"
+				name="SelectReviewerForm">
+			<forward name="success" redirect="true" path="/mvc/reviewer/reviewersHome.do"/>
+		</action>
+	</action-mappings>
+	<message-resources parameter="MessageResources" />
+</struts-config>
